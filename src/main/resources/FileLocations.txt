@@ -1,0 +1,4 @@
+Drawings;C:/Users/Danny/Desktop/Launch4j
+dxfLocation;/home/kal/Desktop/REVDEMOSPACE/AutoCadDxfs
+TruckLocations;C:/Users/Danny/Desktop/Launch4j
+TruckArchiveLocations;/home/kal/Desktop/REVDEMOSPACE/Archive

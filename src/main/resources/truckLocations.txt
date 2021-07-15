@@ -1,0 +1,20 @@
+1. Exterior Working Folder
+2. Interior Working Folder
+3. Completed Units/100000 - 149999
+3. Completed Units/150000 - 199999
+3. Completed Units/200000 - 249999
+3. Completed Units/250000 - 299999
+3. Completed Units/300000 - 349999
+3. Completed Units/350000 - 399999
+3. Completed Units/400000 - 449999
+3. Completed Units/450000 - 499999
+3. Completed Units/500000 - 549999
+3. Completed Units/550000 - 599999
+3. Completed Units/600000 - 649999
+3. Completed Units/650000 - 649999
+3. Completed Units/700000 - 749999
+3. Completed Units/750000 - 799999
+3. Completed Units/800000 - 849999
+3. Completed Units/850000 - 899999
+3. Completed Units/900000 - 949999
+3. Completed Units/950000 - 999999
