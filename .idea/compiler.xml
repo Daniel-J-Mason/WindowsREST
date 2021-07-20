@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="WindowsREST" target="16" />
+      <module name="WindowsREST" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
