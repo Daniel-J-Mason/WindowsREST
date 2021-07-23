@@ -35,8 +35,9 @@ public class ArchiveTruckMapDownloader {
         for (String element: subFolders()){
             StringBuilder link = new StringBuilder();
             link.append(getServerPathToUnits());
-            link.append("/");
+            link.append("\\");
             link.append(element);
+            System.out.println(link);
             File tempFile = new File(link.toString());
             String[] templist;
             templist = tempFile.list();
@@ -45,9 +46,9 @@ public class ArchiveTruckMapDownloader {
             for(String subelement: templist){
                 StringBuilder subLink = new StringBuilder();
                 subLink.append(getServerPathToUnits());
-                subLink.append("/");
+                subLink.append("\\");
                 subLink.append(element);
-                subLink.append("/");
+                subLink.append("\\");
                 subLink.append(subelement);
                 mainMap.put(subelement, subLink.toString());
             }

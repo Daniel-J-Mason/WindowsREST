@@ -5,9 +5,9 @@ import java.io.InputStream;
 import java.util.*;
 
 public class DxfFinder {
-    private String dxf;
-    private HashMap<String, String> drawingLocation;
-    private HashMap<String, String> familyTable;
+    public String dxf;
+    private TreeMap<String, String> dxfLocation;
+    private TreeMap<String, String> familyTable;
     
     /**
      * This takes a dxf number of length 6 or more;
@@ -19,11 +19,11 @@ public class DxfFinder {
         else
             this.dxf = string;
         
-        drawingLocation = getPrefixes();
+        dxfLocation = getPrefixes();
         familyTable = mapBuilder();
     }
     
-    public HashMap<String, String> getFamilyTable() {
+    public TreeMap<String, String> getFamilyTable() {
         return familyTable;
     }
     
@@ -51,10 +51,10 @@ public class DxfFinder {
      */
     public String getLink(){
         StringBuilder link = new StringBuilder();
-        link.append(getServerPathToDrawings());
-        link.append("/");
-        link.append(drawingLocation.get(dxf.substring(0, 2)));
-        link.append("/");
+        link.append(getServerPathToDxfs());
+        link.append("\\");
+        link.append(dxfLocation.get(dxf.substring(0, 2)));
+        link.append("\\");
         link.append(dxf.toLowerCase());
         link.append(".dxf");
         System.out.println(link);
@@ -67,9 +67,9 @@ public class DxfFinder {
      */
     private ArrayList<String> fileContents(){
         StringBuilder link = new StringBuilder();
-        link.append(getServerPathToDrawings());
-        link.append("/");
-        link.append(drawingLocation.get(dxf.substring(0, 2)));
+        link.append(getServerPathToDxfs());
+        link.append("\\");
+        link.append(dxfLocation.get(dxf.substring(0, 2)));
         
         File file = new File(link.toString());
         if (file.exists()) {
@@ -86,7 +86,7 @@ public class DxfFinder {
      * private method to pull the base file path from the resources file "FileLocations.txt" Line 1.
      * @return "FileLocations.txt" Line 1 forward of the :
      */
-    private String getServerPathToDrawings(){
+    public String getServerPathToDxfs(){
         String returnString = "";
         
         InputStream inputStream = null;
@@ -106,8 +106,8 @@ public class DxfFinder {
     /**
      * Pulls the HashMap for drawing prefixes from resources file drawingPrefix.txt
      */
-    public HashMap<String, String> getPrefixes(){
-        HashMap<String, String> returnMap = new HashMap<>();
+    public TreeMap<String, String> getPrefixes(){
+        TreeMap<String, String> returnMap = new TreeMap<>();
         
         InputStream inputStream = null;
         try{
@@ -124,33 +124,33 @@ public class DxfFinder {
         return returnMap;
     }
     
-    private HashMap<String, String> mapBuilder(){
-        HashMap<String, String> mainMap = new HashMap<>();
+    private TreeMap<String, String> mapBuilder(){
+        TreeMap<String, String> mainMap = new TreeMap<>();
             StringBuilder link = new StringBuilder();
-            link.append(getServerPathToDrawings());
-            link.append("/");
-            link.append(drawingLocation.get(dxf.substring(0, 2)));
+            link.append(getServerPathToDxfs());
+            link.append("\\");
+            link.append(dxfLocation.get(dxf.substring(0, 2)));
             File tempFile = new File(link.toString());
             String[] templist;
             templist = tempFile.list();
             
             if (tempFile.exists()) {
                 for (String subelement : templist) {
-                    if (subelement.startsWith(dxf)) {
+                    if (subelement.startsWith(dxf) && subelement.toLowerCase().endsWith("dxf")) {
                         StringBuilder subLink = new StringBuilder();
-                        subLink.append(getServerPathToDrawings());
-                        subLink.append("/");
-                        subLink.append(drawingLocation.get(subelement.substring(0, 2)));
-                        subLink.append("/");
+                        subLink.append(getServerPathToDxfs());
+                        subLink.append("\\");
+                        subLink.append(dxfLocation.get(subelement.substring(0, 2)));
+                        subLink.append("\\");
                         subLink.append(subelement);
                         mainMap.put(subelement, subLink.toString());
                     }
         
                 }
-    
+                
                 return mainMap;
             }
-            return new HashMap<>();
+            return new TreeMap<>();
         }
     
     

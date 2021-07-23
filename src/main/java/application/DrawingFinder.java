@@ -27,14 +27,16 @@ public class DrawingFinder {
      *  and returns the String drawing number if there is a match
      */
     public String getDrawing() {
+        String actualName = null;
         int count = 0;
         for (String drawingFile: fileContents()){
             if (drawingFile.startsWith(drawing)){
                 count++;
+                actualName = drawingFile;
             }
         }
         if (count > 0)
-            return drawing;
+            return actualName;
         else
             return null;
     }
@@ -46,11 +48,10 @@ public class DrawingFinder {
     public String getLink(){
         StringBuilder link = new StringBuilder();
         link.append(getServerPathToDrawings());
-        link.append("/");
+        link.append("\\");
         link.append(drawingLocation.get(drawing.substring(0, 2)));
-        link.append("/");
-        link.append(drawing.toLowerCase());
-        link.append(".pdf");
+        link.append("\\");
+        link.append(getDrawing().toLowerCase());
         
         return link.toString();
     }
@@ -62,11 +63,10 @@ public class DrawingFinder {
     private ArrayList<String> fileContents(){
         StringBuilder link = new StringBuilder();
         link.append(getServerPathToDrawings());
-        link.append("/");
+        link.append("\\");
         link.append(drawingLocation.get(drawing.substring(0, 2)));
         
         File file = new File(link.toString());
-        System.out.println("Searching " + link);
         if (file.exists()) {
             ArrayList<String> pathName = new ArrayList<>(Arrays.asList(Objects.requireNonNull(file.list())));
             pathName.stream()

@@ -16,11 +16,12 @@ import org.controlsfx.control.textfield.TextFields;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class SearchBar extends Application{
     @Override
     public void start(Stage window) throws FileNotFoundException {
-        window.setTitle("REV Group Search Bar");
+        window.setTitle("REV Engineering Search Tool");
         window.setMaxHeight(655);
         window.setMaxWidth(1050);
         window.setResizable(false);
@@ -136,6 +137,7 @@ public class SearchBar extends Application{
         //3.6 misc panel
         Button clearAll = new Button("Clear all panels");
         Hyperlink questionsLink = new Hyperlink("Need help?");
+        
         Button refresh = new Button("Refresh");
         bottomMiddle.setAlignment(Pos.CENTER);
         bottomMiddle.getChildren().add(refresh);
@@ -180,11 +182,14 @@ public class SearchBar extends Application{
                 DrawingFinder searcher = new DrawingFinder(drawing);
                 if (searcher.getDrawing() == null) {
                     topLeftErrorLabel.setText("Error: " + drawing + " not found!");
+                    System.out.println(searcher.getLink());
                 } else {
                     getHostServices().showDocument(searcher.getLink());
                     Hyperlink link = new Hyperlink(searcher.getDrawing());
-                    link.setOnAction(actionEvent1 ->
-                            getHostServices().showDocument(searcher.getLink()));
+                    link.setOnAction(actionEvent1 -> {
+                        getHostServices().showDocument(searcher.getLink());
+                        link.setVisited(false);
+                    });
                     topRight.getChildren().add(link);
                     topRight.getChildren().add(new Text("\n"));
                     middleTopLeft.setText("");
@@ -202,8 +207,10 @@ public class SearchBar extends Application{
             } else {
                 getHostServices().showDocument(searcher.getLink());
                 Hyperlink link = new Hyperlink(searcher.getDrawing());
-                link.setOnAction(actionEvent1 ->
-                        getHostServices().showDocument(searcher.getLink()));
+                link.setOnAction(actionEvent1 -> {
+                    getHostServices().showDocument(searcher.getLink());
+                    link.setVisited(false);
+                });
                 topRight.getChildren().add(link);
                 topRight.getChildren().add(new Text("\n"));
                 middleTopLeft.setText("");
@@ -222,7 +229,7 @@ public class SearchBar extends Application{
                         if (searcher.getDxf().equals("-1")) {
                             middleLeftErrorLabel.setText("Error: " + dxf + " not found!"); //!!!
                         } else {
-                            HashMap<String, String> familyTable = searcher.getFamilyTable();
+                            TreeMap<String, String> familyTable = searcher.getFamilyTable();
                             for (String item : familyTable.keySet()) {
                                 Hyperlink instanceLink = new Hyperlink(item);
                                 center.getChildren().add(instanceLink);
@@ -233,10 +240,13 @@ public class SearchBar extends Application{
                                     middleRight.getChildren().add(new Text("\n"));
                                     separateCopyOfInstanceLink.setOnAction(actionEvent1 -> {
                                         getHostServices().showDocument(familyTable.get(item));
+                                        separateCopyOfInstanceLink.setVisited(false);
                                     });
+                                    instanceLink.setVisited(false);
                                 });
                                 center.getChildren().add(new Text("\n"));
                             }
+                            middleLeftErrorLabel.setText("");
                         }
                         middleMiddleLeft.setText("");
                     }
@@ -250,7 +260,7 @@ public class SearchBar extends Application{
             if (searcher.getDxf() == null) {
                 middleLeftErrorLabel.setText("Error: " + dxf + " not found!"); //!!!
             } else {
-                HashMap<String, String> familyTable = searcher.getFamilyTable();
+                TreeMap<String, String> familyTable = searcher.getFamilyTable();
                 for (String item : familyTable.keySet()) {
                     Hyperlink instanceLink = new Hyperlink(item);
                     center.getChildren().add(instanceLink);
@@ -261,7 +271,9 @@ public class SearchBar extends Application{
                         middleRight.getChildren().add(new Text("\n"));
                         separateCopyOfInstanceLink.setOnAction(actionEvent1 -> {
                             getHostServices().showDocument(familyTable.get(item));
+                            separateCopyOfInstanceLink.setVisited(false);
                         });
+                        instanceLink.setVisited(false);
                     });
                     center.getChildren().add(new Text("\n"));
                 }
@@ -280,8 +292,10 @@ public class SearchBar extends Application{
                 } else {
                     getHostServices().showDocument(downloader.getLink(truck));
                     Hyperlink link = new Hyperlink(truck);
-                    link.setOnAction(actionEvent1 ->
-                            getHostServices().showDocument(downloader.getLink(truck)));
+                    link.setOnAction(actionEvent1 -> {
+                        getHostServices().showDocument(downloader.getLink(truck));
+                        link.setVisited(false);
+                    });
                     bottomRight.getChildren().add(link);
                     bottomRight.getChildren().add(new Text("\n"));
                     middleBottomLeft.setText("");
@@ -298,8 +312,10 @@ public class SearchBar extends Application{
             } else {
                 getHostServices().showDocument(downloader.getLink(truck));
                 Hyperlink link = new Hyperlink(truck);
-                link.setOnAction(actionEvent1 ->
-                        getHostServices().showDocument(downloader.getLink(truck)));
+                link.setOnAction(actionEvent1 -> {
+                    getHostServices().showDocument(downloader.getLink(truck));
+                    link.setVisited(false);
+                });
                 bottomRight.getChildren().add(link);
                 bottomRight.getChildren().add(new Text("\n"));
                 middleBottomLeft.setText("");
@@ -319,8 +335,10 @@ public class SearchBar extends Application{
                         } else {
                             getHostServices().showDocument(archiveDownloader.getLink(truck));
                             Hyperlink link = new Hyperlink(truck);
-                            link.setOnAction(actionEvent1 ->
-                                    getHostServices().showDocument(archiveDownloader.getLink(truck)));
+                            link.setOnAction(actionEvent1 ->{
+                                    getHostServices().showDocument(archiveDownloader.getLink(truck));
+                                    link.setVisited(false);
+                            });
                             bottomRight.getChildren().add(link);
                             bottomRight.getChildren().add(new Text("\n"));
                             middleBottomLeftArchive.setText("");
@@ -337,12 +355,15 @@ public class SearchBar extends Application{
             } else {
                 getHostServices().showDocument(archiveDownloader.getLink(truck));
                 Hyperlink link = new Hyperlink(truck);
-                link.setOnAction(actionEvent1 ->
-                        getHostServices().showDocument(archiveDownloader.getLink(truck)));
+                link.setOnAction(actionEvent1 -> {
+                    getHostServices().showDocument(archiveDownloader.getLink(truck));
+                    link.setVisited(false);
+                });
                 bottomRight.getChildren().add(link);
                 bottomRight.getChildren().add(new Text("\n"));
                 middleBottomLeftArchive.setText("");
                 bottomLeftArchiveErrorLabel.setText("");
+                
             }
         }));
         
@@ -351,13 +372,19 @@ public class SearchBar extends Application{
         refresh.setOnAction(actionEvent -> {
             downloader.refresh();
             archiveDownloader.refresh();
+            TextFields.bindAutoCompletion(middleBottomLeft, downloader.autoCompleteList());
+            TextFields.bindAutoCompletion(middleBottomLeftArchive, archiveDownloader.autoCompleteList());
         });
     
         clearAll.setOnAction(actionEvent -> {
             middleTopLeft.setText("");
+            topLeftErrorLabel.setText("");
             middleMiddleLeft.setText("");
+            middleLeftErrorLabel.setText("");
             middleBottomLeft.setText("");
+            bottomLeftErrorLabel.setText("");
             middleBottomLeftArchive.setText("");
+            bottomLeftArchiveErrorLabel.setText("");
             center.getChildren().clear();
             topRight.getChildren().clear();
             middleRight.getChildren().clear();
@@ -365,6 +392,13 @@ public class SearchBar extends Application{
         });
         
         //questionsLink for need help?
+        
+        questionsLink.setOnAction(actionEvent -> {
+            getHostServices().showDocument("\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\" +
+                    "Working Folder - Unshipped Units\\4. Personal Working Folder" +
+                    "\\Daniel Mason\\R.E.S.T. Documentation");
+            questionsLink.setVisited(false);
+        });
 
         // main Scene wrap
         Scene scene = new Scene(mainWrap);
