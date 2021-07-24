@@ -1,4 +1,4 @@
-package application;
+package modules;
 
 import java.io.File;
 import java.io.InputStream;
@@ -6,23 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//refactor out fileinputStream locations and then condense this and Truckfinder into one file with a constructor
-//variable coming from a fileInputStream code.
-
-public class ArchiveTruckMapDownloader {
+public class TruckMapDownloader {
     private HashMap<String, String> nameAndLink;
     private ArrayList<String> locationsFromResources;
     
-    public ArchiveTruckMapDownloader(){
+    public TruckMapDownloader(){
+        nameAndLink = mapBuilder();
+    }
+    
+    public void refresh(){
         nameAndLink = mapBuilder();
     }
     
     public String getLink(String fullName){
         return nameAndLink.get(fullName);
-    }
-
-    public void refresh(){
-        nameAndLink = mapBuilder();
     }
     
     public ArrayList<String> autoCompleteList(){
@@ -37,7 +34,6 @@ public class ArchiveTruckMapDownloader {
             link.append(getServerPathToUnits());
             link.append("\\");
             link.append(element);
-            System.out.println(link);
             File tempFile = new File(link.toString());
             String[] templist;
             templist = tempFile.list();
@@ -60,10 +56,10 @@ public class ArchiveTruckMapDownloader {
     
     private ArrayList<String> subFolders(){
         ArrayList<String> files = new ArrayList<>();
-        
+    
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/archiveTruckLocations.txt");
+            inputStream = getClass().getResourceAsStream("/truckLocations.txt");
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 files.add(scanner.nextLine());
@@ -84,7 +80,6 @@ public class ArchiveTruckMapDownloader {
             
             inputStream = getClass().getResourceAsStream("/FileLocations.txt");
             Scanner scanner = new Scanner(inputStream);
-            scanner.nextLine();
             scanner.nextLine();
             scanner.nextLine();
             String[] parts = scanner.nextLine().split(";");

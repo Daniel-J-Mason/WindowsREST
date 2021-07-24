@@ -11,11 +11,14 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import modules.ArchiveTruckMapDownloader;
+import modules.DrawingFinder;
+import modules.DxfFinder;
+import modules.TruckMapDownloader;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class SearchBar extends Application{
@@ -182,7 +185,6 @@ public class SearchBar extends Application{
                 DrawingFinder searcher = new DrawingFinder(drawing);
                 if (searcher.getDrawing() == null) {
                     topLeftErrorLabel.setText("Error: " + drawing + " not found!");
-                    System.out.println(searcher.getLink());
                 } else {
                     getHostServices().showDocument(searcher.getLink());
                     Hyperlink link = new Hyperlink(searcher.getDrawing());

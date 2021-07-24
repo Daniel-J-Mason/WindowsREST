@@ -1,4 +1,4 @@
-package application;
+package modules;
 
 import java.io.File;
 import java.io.InputStream;
@@ -62,7 +62,7 @@ public class DxfFinder {
     }
     
     /**
-     * private method to return and ArrayList of drawing names in its folder
+     * private method to return an ArrayList of dxf names in its folder
      * @return ArrayList of PDF's in a year folder
      */
     private ArrayList<String> fileContents(){
@@ -104,7 +104,7 @@ public class DxfFinder {
     }
     
     /**
-     * Pulls the HashMap for drawing prefixes from resources file drawingPrefix.txt
+     * Pulls the HashMap for drawing prefixes from resources file drawingPrefix.txt as they apply to dxfs
      */
     public TreeMap<String, String> getPrefixes(){
         TreeMap<String, String> returnMap = new TreeMap<>();
@@ -125,7 +125,9 @@ public class DxfFinder {
     }
     
     private TreeMap<String, String> mapBuilder(){
-        TreeMap<String, String> mainMap = new TreeMap<>();
+        // Order dxf's correctly
+        FileSortComparator comparator = new FileSortComparator();
+        TreeMap<String, String> mainMap = new TreeMap<>(comparator);
             StringBuilder link = new StringBuilder();
             link.append(getServerPathToDxfs());
             link.append("\\");

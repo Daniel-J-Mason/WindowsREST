@@ -1,4 +1,4 @@
-package application;
+package modules;
 
 import java.io.File;
 import java.io.InputStream;
@@ -6,20 +6,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TruckMapDownloader {
+//refactor out fileinputStream locations and then condense this and Truckfinder into one file with a constructor
+//variable coming from a fileInputStream code.
+
+public class ArchiveTruckMapDownloader {
     private HashMap<String, String> nameAndLink;
     private ArrayList<String> locationsFromResources;
     
-    public TruckMapDownloader(){
-        nameAndLink = mapBuilder();
-    }
-    
-    public void refresh(){
+    public ArchiveTruckMapDownloader(){
         nameAndLink = mapBuilder();
     }
     
     public String getLink(String fullName){
         return nameAndLink.get(fullName);
+    }
+
+    public void refresh(){
+        nameAndLink = mapBuilder();
     }
     
     public ArrayList<String> autoCompleteList(){
@@ -56,10 +59,10 @@ public class TruckMapDownloader {
     
     private ArrayList<String> subFolders(){
         ArrayList<String> files = new ArrayList<>();
-    
+        
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/truckLocations.txt");
+            inputStream = getClass().getResourceAsStream("/archiveTruckLocations.txt");
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 files.add(scanner.nextLine());
@@ -80,6 +83,7 @@ public class TruckMapDownloader {
             
             inputStream = getClass().getResourceAsStream("/FileLocations.txt");
             Scanner scanner = new Scanner(inputStream);
+            scanner.nextLine();
             scanner.nextLine();
             scanner.nextLine();
             String[] parts = scanner.nextLine().split(";");
