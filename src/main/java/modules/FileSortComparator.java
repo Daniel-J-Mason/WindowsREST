@@ -1,105 +1,48 @@
 package modules;
 
+import java.math.BigInteger;
 import java.util.Comparator;
+import java.util.regex.Pattern;
 
-public class FileSortComparator implements Comparator<String> {
-    private String string1, string2;
-    private int position1, position2, length1, length2;
+public final class FileSortComparator implements Comparator<String> {
+    
+    private static final Pattern NUMBERS =
+            Pattern.compile("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
     
     @Override
-    public int compare(String string1, String string2) {
-        this.string1 = string1;
-        this.string2 = string2;
-        length1 = string1.length();
-        length2 = string2.length();
-        position1 = position2 = 0;
+    public final int compare(String string1, String string2) {
+    
+        // Null last
+        if (string1 == null || string2 == null)
+            return string1 == null ? string2 == null ? 0 : -1 : 1;
+    
+        // Splitting both input strings by the above patterns
+        String[] split1 = NUMBERS.split(string1);
+        String[] split2 = NUMBERS.split(string2);
+        int length = Math.min(split1.length, split2.length);
         
-        int result = 0;
-        while (result == 0 && position1 < length1 && position2 < length2) {
-            char character1 = string1.charAt(position1);
-            char character2 = string2.charAt(position2);
+        // Loop through both
+        for (int i = 0; i < length; i++) {
+            char character1 = split1[i].charAt(0);
+            char character2 = split2[i].charAt(0);
+            int comparison = 0;
             
-            // ? meaning -- Character.isDigit(character2) ? compareNumbers(): -1;
-            // reads if Characters.is(also)Digit(character2) is true, compareNumbers(), if false return -1.
-            if (Character.isDigit(character1)) {
-                result = Character.isDigit(character2) ? compareNumbers() : -1;
-            } else {
-                if (Character.isLetter(character1)) {
-                    result = Character.isLetter(character2) ? compareOther(true) : 1;
-                } else {
-                    result = Character.isDigit(character2) ? 1
-                            : Character.isLetter(character2) ? -1
-                            : compareOther(false);
-                }
+            // Digit first sort
+            if (character1 >= '0' && character1 <= '9' && character2 >= '0' && character2 <= '9') {
+                comparison = new BigInteger(split1[i]).compareTo(new BigInteger(split2[i]));
             }
-            position1++;
-            position2++;
-        }
-        return result == 0 ? length1 - length2 : result;
-    }
-    
-    private int compareNumbers() {
-        // comparing number sizes, start and end of number compares length
-        int end1 = position1 + 1;
-        while (end1 < length1 && Character.isDigit(string1.charAt(end1))) {
-            end1++;
-        }
-        
-        int fullLength1 = end1 - position1;
-        while (position1 < end1 && string1.charAt(position1) == '0') ;
-        {
-            position1++;
-        }
-        
-        int end2 = position2 + 1;
-        while (end2 < length2 && Character.isDigit(string2.charAt(end2))) {
-            end2++;
-        }
-        
-        int fullLength2 = end2 - position2;
-        while (position2 < end2 && string2.charAt(position2) == '0') {
-            position2++;
-        }
-        
-        //If numbers are not the same length return difference
-        int delta = (end1 - position1) - (end2 - position2);
-        if (delta != 0){
-            return delta;
-        }
-        
-        while (position1 < end1 && position2 < end2){
-            delta = string1.charAt(position1++) - string2.charAt(position2++);
-            if (delta != 0){
-                return delta;
+            
+            // If no numeric then lex
+            if (comparison == 0){
+                comparison = split1[i].compareTo(split2[i]);
+            }
+            
+            // stops when not equal
+            if (comparison != 0){
+                return comparison;
             }
         }
-        
-        position1--;
-        position2--;
-        
-        return fullLength2 - fullLength1;
-    }
-    
-    private int compareOther(boolean isLetters){
-        char character1 = string1.charAt(position1);
-        char character2 = string2.charAt(position2);
-    
-        if (character1 == character2)
-        {
-            return 0;
-        }
-    
-        if (isLetters)
-        {
-            character1 = Character.toUpperCase(character1);
-            character2 = Character.toUpperCase(character2);
-            if (character1 != character2)
-            {
-                character1 = Character.toLowerCase(character1);
-                character2 = Character.toLowerCase(character2);
-            }
-        }
-    
-        return character1 - character2;
+        // if entirely equal order by length
+        return split1.length - split2.length;
     }
 }
