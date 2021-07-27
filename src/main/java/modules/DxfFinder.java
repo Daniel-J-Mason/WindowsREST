@@ -23,6 +23,10 @@ public class DxfFinder {
         familyTable = mapBuilder();
     }
     
+    /**
+     * TreeMap of the name and link family table for center grid
+     * @return TreeMap of dxf family table
+     */
     public TreeMap<String, String> getFamilyTable() {
         return familyTable;
     }
@@ -124,6 +128,11 @@ public class DxfFinder {
         return returnMap;
     }
     
+    /**
+     * Creates a TreeMap that consists of fileName and location for all elements that begin with the 6 digit dxf value
+     * Key - FileName, Value - FullPath (link)
+     * @return Truck HashMap
+     */
     private TreeMap<String, String> mapBuilder(){
         // Order dxf's correctly
         FileSortComparator comparator = new FileSortComparator();

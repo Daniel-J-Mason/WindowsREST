@@ -22,14 +22,19 @@ import java.io.InputStream;
 import java.util.TreeMap;
 
 public class SearchBar extends Application{
+    /**
+     * Main Application. See Logic Web for layout information
+     * @param window
+     * @throws FileNotFoundException
+     */
     @Override
     public void start(Stage window) throws FileNotFoundException {
         window.setTitle("REV Engineering Search Tool");
         window.setMaxHeight(655);
         window.setMaxWidth(1050);
         window.setResizable(false);
+        window.getIcons().add(new Image(getClass().getResourceAsStream("/REST.ico")));
         
-        //These are also likely refactorable
         TruckMapDownloader downloader = new TruckMapDownloader();
         ArchiveTruckMapDownloader archiveDownloader = new ArchiveTruckMapDownloader();
         
@@ -43,12 +48,10 @@ public class SearchBar extends Application{
         
         //1.1 gridPane sizing
         RowConstraints rowConstraints = new RowConstraints();
-        //rowConstraints.setPercentHeight(100d / 3);
         rowConstraints.setMaxHeight(200);
         rowConstraints.setMinHeight(200);
         
         ColumnConstraints columnConstraints = new ColumnConstraints();
-        //columnConstraints.setPercentWidth(100d / 3);
         columnConstraints.setMaxWidth(350);
         columnConstraints.setMinWidth(350);
         for (int i = 1; i < 4; i++) {
@@ -81,14 +84,14 @@ public class SearchBar extends Application{
         //3. Subsections of mainGrid
         
         //3.1 Top left
-        Label upperTopLeft = new Label("  Drawing number (123456 format)");
+        Label upperTopLeft = new Label("  Drawing Number:");
         TextField middleTopLeft = new TextField();
         Button bottomTopLeft = new Button("Search");
         Label topLeftErrorLabel = new Label("");
         topLeft.getChildren().addAll(upperTopLeft, middleTopLeft, bottomTopLeft, topLeftErrorLabel);
         
         //3.2 Middle left
-        Label upperMiddleLeft = new Label("  .dxf number (123456 format)");
+        Label upperMiddleLeft = new Label("  .dxf Number (123456 format):");
         TextField middleMiddleLeft = new TextField();
         Button bottomMiddleLeft = new Button("Search");
         Label middleLeftErrorLabel = new Label();
@@ -97,14 +100,14 @@ public class SearchBar extends Application{
         //3.3 Bottom left -- consider refactoring these as well
         
         //3.3.1 truck search section
-        Label upperBottomLeft = new Label("  Truck Number (123456 format)");
+        Label upperBottomLeft = new Label("  Truck Number:");
         TextField middleBottomLeft = new TextField();
         Button bottomBottomLeft = new Button("Search");
         TextFields.bindAutoCompletion(middleBottomLeft, downloader.autoCompleteList());
         Label bottomLeftErrorLabel = new Label();
         
         //3.3.2 archive truck search section
-        Label upperBottomLeftArchive = new Label("\n\n  Archive Truck Number (123456 format)");
+        Label upperBottomLeftArchive = new Label("\n\n  Archive Truck Number:");
         TextField middleBottomLeftArchive = new TextField();
         Button bottomBottomLeftArchive = new Button("Search");
         TextFields.bindAutoCompletion(middleBottomLeftArchive, archiveDownloader.autoCompleteList());

@@ -13,22 +13,43 @@ public class ArchiveTruckMapDownloader {
     private HashMap<String, String> nameAndLink;
     private ArrayList<String> locationsFromResources;
     
+    /**
+     * Creates the map once when the class Object is created.
+     */
     public ArchiveTruckMapDownloader(){
         nameAndLink = mapBuilder();
     }
     
+    /**
+     * Takes one foldername and returns its hyperlink address
+     * @param fullName
+     * @return fullPath
+     */
     public String getLink(String fullName){
         return nameAndLink.get(fullName);
     }
-
+    
+    /**
+     * This is for use in recreating the truck map. This only runs on app start up and may need ot be refreshed
+     * as units are uploaded
+     */
     public void refresh(){
         nameAndLink = mapBuilder();
     }
     
+    /**
+     * This is passed to controlsfx for predictive searching
+     * @return ArrayList of all keys for the units HashMap
+     */
     public ArrayList<String> autoCompleteList(){
         return new ArrayList<>(nameAndLink.keySet());
     }
     
+    /**
+     * Creates a Hashmap: This takes file locations from resources, goes through every folder and adds every truck.
+     * Key - FileName, Value - FullPath (link)
+     * @return Truck HashMap
+     */
     private HashMap<String, String> mapBuilder(){
         HashMap<String, String> mainMap = new HashMap<>();
         
@@ -57,6 +78,10 @@ public class ArchiveTruckMapDownloader {
         return mainMap;
     }
     
+    /**
+     * Pulls from resources listing all archive folder locations
+     * @return List of all Archive sub folders
+     */
     private ArrayList<String> subFolders(){
         ArrayList<String> files = new ArrayList<>();
         
@@ -75,6 +100,10 @@ public class ArchiveTruckMapDownloader {
         return files;
     }
     
+    /**
+     * Uses the resources folder to pull Archive location on the server.
+     * @return Server location String
+     */
     private String getServerPathToUnits(){
         String returnString = "";
         

@@ -117,10 +117,4 @@ public class DrawingFinder {
         
         return returnMap;
     }
-    
-    
-    
-    
-    
-    
 }

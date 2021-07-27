@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Got rid of print statements from debugging.&#10;Created FileSortComparator to compare dxfs and order them correctly&#10;Separated all the logic modules away from main application in new package">
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/FileSortComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/FileSortComparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveTruckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/archiveTruckLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/archiveTruckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/archiveTruckLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/ArchiveTruckMapDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/ArchiveTruckMapDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/TruckMapDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/TruckMapDownloader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +63,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.3678344" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -98,9 +101,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WindowsREST [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map>
+                <entry key="windows" value="true" />
+              </map>
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Maven.WindowsREST [clean]" />
         <item itemvalue="Application.SearchBar" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.SearchBar" />
@@ -137,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627085728053</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release.">
+      <created>1627296607937</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627296607937</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +195,7 @@
     <MESSAGE value="Updated to add compatibility for linux and windows 10" />
     <MESSAGE value="Prerelease work ready deployment" />
     <MESSAGE value="Got rid of print statements from debugging.&#10;Created FileSortComparator to compare dxfs and order them correctly&#10;Separated all the logic modules away from main application in new package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got rid of print statements from debugging.&#10;Created FileSortComparator to compare dxfs and order them correctly&#10;Separated all the logic modules away from main application in new package" />
+    <MESSAGE value="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release." />
   </component>
 </project>
