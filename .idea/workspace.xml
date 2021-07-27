@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release.">
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Documentation post 1.0.0 release">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
@@ -63,7 +63,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.3678344" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -175,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627296607937</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Documentation post 1.0.0 release">
+      <created>1627369310077</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1627369310077</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +203,7 @@
     <MESSAGE value="Prerelease work ready deployment" />
     <MESSAGE value="Got rid of print statements from debugging.&#10;Created FileSortComparator to compare dxfs and order them correctly&#10;Separated all the logic modules away from main application in new package" />
     <MESSAGE value="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release." />
+    <MESSAGE value="Documentation post 1.0.0 release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentation post 1.0.0 release" />
   </component>
 </project>
