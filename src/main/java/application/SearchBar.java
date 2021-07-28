@@ -195,10 +195,6 @@ public class SearchBar extends Application{
                         getHostServices().showDocument(searcher.getLink());
                         link.setVisited(false);
                     });
-                    ContextMenu contextMenu = new ContextMenu();
-                    MenuItem showLink = new MenuItem(searcher.getLink());
-                    contextMenu.getItems().add(showLink);
-                    link.setContextMenu(contextMenu);
                     topRight.getChildren().add(link);
                     topRight.getChildren().add(new Text("\n"));
                     middleTopLeft.setText("");
@@ -220,10 +216,6 @@ public class SearchBar extends Application{
                     getHostServices().showDocument(searcher.getLink());
                     link.setVisited(false);
                 });
-                ContextMenu contextMenu = new ContextMenu();
-                MenuItem showLink = new MenuItem(searcher.getLink());
-                contextMenu.getItems().add(showLink);
-                link.setContextMenu(contextMenu);
                 topRight.getChildren().add(link);
                 topRight.getChildren().add(new Text("\n"));
                 middleTopLeft.setText("");
@@ -255,16 +247,8 @@ public class SearchBar extends Application{
                                         getHostServices().showDocument(familyTable.get(item));
                                         separateCopyOfInstanceLink.setVisited(false);
                                     });
-                                    ContextMenu contextMenu = new ContextMenu();
-                                    MenuItem showLink = new MenuItem(familyTable.get(item));
-                                    contextMenu.getItems().add(showLink);
-                                    separateCopyOfInstanceLink.setContextMenu(contextMenu);
                                     instanceLink.setVisited(false);
                                 });
-                                ContextMenu contextMenu = new ContextMenu();
-                                MenuItem showLink = new MenuItem(familyTable.get(item));
-                                contextMenu.getItems().add(showLink);
-                                instanceLink.setContextMenu(contextMenu);
                                 center.getChildren().add(new Text("\n"));
                             }
                             middleLeftErrorLabel.setText("");
@@ -294,16 +278,8 @@ public class SearchBar extends Application{
                             getHostServices().showDocument(familyTable.get(item));
                             separateCopyOfInstanceLink.setVisited(false);
                         });
-                        ContextMenu contextMenu = new ContextMenu();
-                        MenuItem showLink = new MenuItem(familyTable.get(item));
-                        contextMenu.getItems().add(showLink);
-                        separateCopyOfInstanceLink.setContextMenu(contextMenu);
                         instanceLink.setVisited(false);
                     });
-                    ContextMenu contextMenu = new ContextMenu();
-                    MenuItem showLink = new MenuItem(familyTable.get(item));
-                    contextMenu.getItems().add(showLink);
-                    instanceLink.setContextMenu(contextMenu);
                     center.getChildren().add(new Text("\n"));
                 }
             }
@@ -325,10 +301,6 @@ public class SearchBar extends Application{
                         getHostServices().showDocument(downloader.getLink(truck));
                         link.setVisited(false);
                     });
-                    ContextMenu contextMenu = new ContextMenu();
-                    MenuItem showLink = new MenuItem(downloader.getLink(truck));
-                    contextMenu.getItems().add(showLink);
-                    link.setContextMenu(contextMenu);
                     bottomRight.getChildren().add(link);
                     bottomRight.getChildren().add(new Text("\n"));
                     middleBottomLeft.setText("");
@@ -349,10 +321,6 @@ public class SearchBar extends Application{
                     getHostServices().showDocument(downloader.getLink(truck));
                     link.setVisited(false);
                 });
-                ContextMenu contextMenu = new ContextMenu();
-                MenuItem showLink = new MenuItem(downloader.getLink(truck));
-                contextMenu.getItems().add(showLink);
-                link.setContextMenu(contextMenu);
                 bottomRight.getChildren().add(link);
                 bottomRight.getChildren().add(new Text("\n"));
                 middleBottomLeft.setText("");
@@ -376,10 +344,6 @@ public class SearchBar extends Application{
                                     getHostServices().showDocument(archiveDownloader.getLink(truck));
                                     link.setVisited(false);
                             });
-                            ContextMenu contextMenu = new ContextMenu();
-                            MenuItem showLink = new MenuItem(archiveDownloader.getLink(truck));
-                            contextMenu.getItems().add(showLink);
-                            link.setContextMenu(contextMenu);
                             bottomRight.getChildren().add(link);
                             bottomRight.getChildren().add(new Text("\n"));
                             middleBottomLeftArchive.setText("");
@@ -400,11 +364,6 @@ public class SearchBar extends Application{
                     getHostServices().showDocument(archiveDownloader.getLink(truck));
                     link.setVisited(false);
                 });
-                ContextMenu contextMenu = new ContextMenu();
-                MenuItem showLink = new MenuItem(archiveDownloader.getLink(truck));
-                
-                contextMenu.getItems().add(showLink);
-                link.setContextMenu(contextMenu);
                 bottomRight.getChildren().add(link);
                 bottomRight.getChildren().add(new Text("\n"));
                 middleBottomLeftArchive.setText("");
