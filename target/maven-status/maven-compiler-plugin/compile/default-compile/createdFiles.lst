@@ -1,7 +1,12 @@
 modules/TruckMapDownloader.class
 modules/DrawingFinder.class
 modules/FileSortComparator.class
+modules/TransmittalMapDownloader.class
 application/Main.class
+modules/PartsByTruck$2.class
 modules/DxfFinder.class
 application/SearchBar.class
 modules/ArchiveTruckMapDownloader.class
+modules/PartsByTruck.class
+modules/PartsByTruck$1.class
+application/ContainmentPage.class

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContainmentPage">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" spacing="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Part Number">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="partNumberField" onKeyPressed="#enterPartNumber" />
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+            <Label fx:id="errorLabel" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <CheckBox fx:id="wheeledCoachBox" mnemonicParsing="false" onAction="#checkBox" text="Wheeled Coach" />
+            <CheckBox fx:id="roadRescueBox" mnemonicParsing="false" onAction="#checkBox" text="Road Resume" />
+            <CheckBox fx:id="metroMedicBox" mnemonicParsing="false" onAction="#checkBox" text="MetroMedic" />
+            <CheckBox fx:id="toggleBox" mnemonicParsing="false" onAction="#toggleAll" text="Toggle All" />
+         </children>
+      </HBox>
+      <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox fx:id="type1Box" mnemonicParsing="false" onAction="#checkBox" text="Type 1" />
+            <CheckBox fx:id="type3Box" mnemonicParsing="false" onAction="#checkBox" text="Type 3" GridPane.columnIndex="1" />
+            <CheckBox fx:id="type4Box" mnemonicParsing="false" onAction="#checkBox" text="Type 4" GridPane.columnIndex="2" />
+            <CheckBox fx:id="type6Box" mnemonicParsing="false" onAction="#checkBox" text="Type 6" GridPane.columnIndex="3" />
+            <CheckBox fx:id="type7Box" mnemonicParsing="false" onAction="#checkBox" text="Type 7" GridPane.columnIndex="4" />
+            <CheckBox fx:id="type9Box" mnemonicParsing="false" onAction="#checkBox" text="Type 9" GridPane.columnIndex="5" />
+         </children>
+      </GridPane>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+         <content>
+            <TextFlow fx:id="displayField" prefHeight="1000.0" prefWidth="600.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
