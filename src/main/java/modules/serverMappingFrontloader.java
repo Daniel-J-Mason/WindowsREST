@@ -6,14 +6,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TransmittalMapDownloader {
+//Serves transmittal, truck, archive units, and pending future update for work orders
+public class serverMappingFrontloader {
+    
     private HashMap<String, String> nameAndLink;
-    private ArrayList<String> locationsFromResources;
-
+    private String location;
+    private String subfolderLocation;
+    
     /**
      * Creates the map once when the class Object is created.
      */
-    public TransmittalMapDownloader(){
+    public serverMappingFrontloader(String location, String subfolderLocation){
+        this.location = location;
+        this.subfolderLocation = subfolderLocation;
+        nameAndLink = mapBuilder();
+    }
+    
+    public serverMappingFrontloader(){
+    }
+    
+    public void setLocation(String location, String subfolderLocation){
+        this.location = location;
+        this.subfolderLocation = subfolderLocation;
         nameAndLink = mapBuilder();
     }
     
@@ -23,7 +37,6 @@ public class TransmittalMapDownloader {
      * @return fullPath
      */
     public String getLink(String fullName){
-        System.out.println("Internal TD link is nameAndLink.get:" + nameAndLink.get(fullName));
         return nameAndLink.get(fullName);
     }
     
@@ -48,7 +61,7 @@ public class TransmittalMapDownloader {
      * Key - FileName, Value - FullPath (link)
      * @return Truck HashMap
      */
-    public HashMap<String, String> mapBuilder(){
+    private HashMap<String, String> mapBuilder(){
         HashMap<String, String> mainMap = new HashMap<>();
         
         for (String element: subFolders()){
@@ -59,11 +72,12 @@ public class TransmittalMapDownloader {
             File tempFile = new File(link.toString());
             String[] templist;
             templist = tempFile.list();
-            System.out.println("Pulling transmittals from:" + element);
             if (templist == null || templist.length == 0)
                 continue;
             for(String subelement: templist){
-                if (!subelement.startsWith("~") && subelement.endsWith(".xlsm") &&
+                //This is specifically to help with excel, and it doesnt impact other files. May either parse off
+                //Section for filters or create a separate method
+                if (!subelement.startsWith("~") &&
                         !subelement.toLowerCase().contains("interior") && !subelement.toLowerCase().contains("cabinet")) {
                     StringBuilder subLink = new StringBuilder();
                     subLink.append(getServerPathToUnits());
@@ -74,7 +88,9 @@ public class TransmittalMapDownloader {
                     mainMap.put(subelement, subLink.toString());
                 }
             }
+            
         }
+        
         return mainMap;
     }
     
@@ -87,7 +103,7 @@ public class TransmittalMapDownloader {
         
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/transmittalLocations.txt");
+            inputStream = getClass().getResourceAsStream(subfolderLocation);
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 files.add(scanner.nextLine());
@@ -95,33 +111,15 @@ public class TransmittalMapDownloader {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        
-        locationsFromResources = files;
+    
         return files;
     }
     
     /**
-     * Uses the resources folder to pull Archive location on the server.
+     * Uses the resources' folder to pull Archive location on the server.
      * @return Server location String
      */
     private String getServerPathToUnits(){
-        String returnString = "";
-        
-        InputStream inputStream = null;
-        try{
-            
-            inputStream = getClass().getResourceAsStream("/FileLocations.txt");
-            Scanner scanner = new Scanner(inputStream);
-            scanner.nextLine();
-            scanner.nextLine();
-            scanner.nextLine();
-            scanner.nextLine();
-            String[] parts = scanner.nextLine().split(";");
-            returnString = parts[1];
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-        return returnString;
+        return location;
     }
 }
