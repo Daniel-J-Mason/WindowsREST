@@ -1,19 +1,22 @@
 package application;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import modules.ArchiveTruckMapDownloader;
 import modules.PartsByTruck;
-import modules.TransmittalMapDownloader;
-import modules.TruckMapDownloader;
+import modules.serverMappingFrontloader;
+import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class ContainmentPage {
@@ -34,19 +37,23 @@ public class ContainmentPage {
     
     private final String queryFolder = "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\Working Folder - Unshipped Units" +
             "\\4. Personal Working Folder\\Daniel Mason\\Scripts\\Critical Location Folder\\QueryableData";
-            
-     
-    //private final String queryFolder = "/home/kal/Desktop/TransmittalQuery/QueryableData";
+    
     public TextField partNumberField;
     private final HashMap<CheckBox, String> checkBoxFiles = new HashMap<>();
     public Label errorLabel;
     public TextFlow displayField;
-    private final TruckMapDownloader downloader = new TruckMapDownloader();
-    private final ArchiveTruckMapDownloader archiveDownloader = new ArchiveTruckMapDownloader();
-    private final TransmittalMapDownloader transmittalDownloader = new TransmittalMapDownloader();
+    private final serverMappingFrontloader downloader = new serverMappingFrontloader();
+    private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
+    private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();
+    
     HostServices hostServices;
     
-    public void initialize() {
+    public void initialize() throws URISyntaxException, IOException {
+        HashMap<String, String> locations = fileLocationsHashmap();
+        downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
+        transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
+        workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
+
         
         //Marry checkboxes to strings
         checkBoxFiles.put(wheeledCoachBox, "WHEELED_COACH");
@@ -149,17 +156,15 @@ public class ContainmentPage {
     
     
     public void linkByTruck(String truckName){
-        System.out.println("Input is: " + truckName);
         List<String> fullNameFolders = downloader.autoCompleteList();
         List<String> fullNameTransmittal = transmittalDownloader.autoCompleteList();
+        List<String> workOrders = workOrderDownloader.autoCompleteList();
         String folderLinkName = null;
         for (String name: fullNameFolders){
             if (name.startsWith(truckName)){
                 folderLinkName = name;
             }
         }
-    
-        System.out.println("Folder link name is: " + folderLinkName);
         
         String transmittalLinkName = null;
         for (String name: fullNameTransmittal){
@@ -167,14 +172,20 @@ public class ContainmentPage {
                 transmittalLinkName = name;
             }
         }
-    
-        System.out.println("Transmittal link name is" + transmittalLinkName);
+        
+        String workOrderLinkName = null;
+        for (String name: workOrders){
+            if (name.startsWith(truckName)){
+                workOrderLinkName = name;
+            }
+        }
         
         if (downloader.getLink(folderLinkName) == null) {
             errorLabel.setText("Error: no unit files found!");
         } else {
             ContextMenu contextMenu = new ContextMenu();
             MenuItem transmittalLink = new MenuItem("Transmittal");
+            MenuItem workOrderLink = new MenuItem("Work Order");
             Hyperlink link = new Hyperlink(folderLinkName);
             String finalFolderLinkName = folderLinkName;
             link.setOnAction(actionEvent1 -> {
@@ -183,14 +194,15 @@ public class ContainmentPage {
             });
             String finalTransmittalLinkName = transmittalLinkName;
             transmittalLink.setOnAction(actionEvent2 -> {
-                System.out.println("Found truck name from input:" + finalTransmittalLinkName);
                         hostServices.showDocument(transmittalDownloader.getLink(finalTransmittalLinkName));
-                System.out.println("Attempting to open:" + finalTransmittalLinkName + ".xlsm <--added outside");
-                System.out.println("Using transmittalDownloader which returns:" + transmittalDownloader.getLink(finalTransmittalLinkName));
-                System.out.println("Here is the full map for current transmittalDownloader:\n\n\n\n" + transmittalDownloader.mapBuilder());
                         link.setVisited(false);
                     });
+            String finalWorkOrderLinkName = workOrderLinkName;
+            workOrderLink.setOnAction(actionEvent3 -> {
+                hostServices.showDocument(workOrderDownloader.getLink(finalWorkOrderLinkName));
+            });
             contextMenu.getItems().add(transmittalLink);
+            contextMenu.getItems().add(workOrderLink);
             link.setContextMenu(contextMenu);
             displayField.getChildren().add(link);
             displayField.getChildren().add(new Text("\n"));
@@ -214,7 +226,7 @@ public class ContainmentPage {
         refresh();
     }
     
-    public void searchButtonAction(ActionEvent actionEvent) throws IOException {
+    public void searchButtonAction() throws IOException {
         refresh();
     }
     
@@ -222,5 +234,13 @@ public class ContainmentPage {
         if (keyEvent.getCode().equals(KeyCode.ENTER)){
             refresh();
         }
+    }
+    
+    public HashMap<String, String> fileLocationsHashmap() throws URISyntaxException, IOException {
+        HashMap<String, String> locations;
+        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        String myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+        locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>(){}.getType());
+        return locations;
     }
 }
