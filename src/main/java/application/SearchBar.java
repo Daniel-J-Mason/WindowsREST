@@ -1,7 +1,10 @@
 package application;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -10,15 +13,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import modules.ArchiveTruckMapDownloader;
-import modules.DrawingFinder;
-import modules.DxfFinder;
-import modules.TruckMapDownloader;
+import modules.*;
 import org.controlsfx.control.textfield.TextFields;
-
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.TreeMap;
 
 public class SearchBar extends Application{
@@ -27,6 +29,9 @@ public class SearchBar extends Application{
      * @param window
      * @throws FileNotFoundException
      */
+    
+    private String jsonFileLocation;
+    
     @Override
     public void start(Stage window) throws FileNotFoundException {
         window.setTitle("REV Engineering Search Tool");
@@ -37,6 +42,7 @@ public class SearchBar extends Application{
         
         TruckMapDownloader downloader = new TruckMapDownloader();
         ArchiveTruckMapDownloader archiveDownloader = new ArchiveTruckMapDownloader();
+        TransmittalMapDownloader transmittalDownloader = new TransmittalMapDownloader();
         
         //1. application.Main boxes
         VBox mainWrap = new VBox();
@@ -88,7 +94,8 @@ public class SearchBar extends Application{
         TextField middleTopLeft = new TextField();
         Button bottomTopLeft = new Button("Search");
         Label topLeftErrorLabel = new Label("");
-        topLeft.getChildren().addAll(upperTopLeft, middleTopLeft, bottomTopLeft, topLeftErrorLabel);
+        Button containment = new Button("Search units containing part");
+        topLeft.getChildren().addAll(upperTopLeft, middleTopLeft, bottomTopLeft, topLeftErrorLabel, containment);
         
         //3.2 Middle left
         Label upperMiddleLeft = new Label("  .dxf Number (123456 format):");
@@ -222,6 +229,34 @@ public class SearchBar extends Application{
                 topLeftErrorLabel.setText("");
             }
         }));
+        containment.setOnAction((actionEvent -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/containmentPage.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ContainmentPage controller = loader.getController();
+            controller.setGetHostController(getHostServices());
+            Scene scene = new Scene(root);
+            Stage containmentStage = new Stage();
+            containmentStage.setScene(scene);
+            
+            containmentStage.show();
+            
+            /*
+            Doesnt work at the moment
+            Stage stage = (Stage)searchButton.getScene().getWindow();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(0);
+            stage.setY((primScreenBounds.getHeight()));
+            stage.setHeight(primScreenBounds.getHeight() - 400);
+            stage.setResizable(Boolean.TRUE);
+            
+             */
+            
+            }));
         
         // dxf search
         
@@ -297,10 +332,28 @@ public class SearchBar extends Application{
                 } else {
                     getHostServices().showDocument(downloader.getLink(truck));
                     Hyperlink link = new Hyperlink(truck);
+                    ContextMenu contextMenu = new ContextMenu();
+                    MenuItem transmittalLink = new MenuItem("Transmittal");
                     link.setOnAction(actionEvent1 -> {
                         getHostServices().showDocument(downloader.getLink(truck));
                         link.setVisited(false);
                     });
+                    transmittalLink.setOnAction(actionEvent2 ->{
+                        List<String> fullNames = downloader.autoCompleteList();
+                        String linkName = null;
+                        for (String name: fullNames){
+                            if (name.startsWith(truck)){
+                                linkName = name;
+                            }
+                        }
+                        System.out.println(transmittalDownloader.getLink(linkName));;
+                        System.out.println(linkName);
+                        System.out.println(fullNames);
+                        getHostServices().showDocument(transmittalDownloader.getLink(linkName) + ".xlsm");
+                        link.setVisited(false);
+                    });
+                    contextMenu.getItems().add(transmittalLink);
+                    link.setContextMenu(contextMenu);
                     bottomRight.getChildren().add(link);
                     bottomRight.getChildren().add(new Text("\n"));
                     middleBottomLeft.setText("");
@@ -315,12 +368,30 @@ public class SearchBar extends Application{
             if (downloader.getLink(truck) == null) {
                 bottomLeftErrorLabel.setText("Error: " + truck + " not found!");
             } else {
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem transmittalLink = new MenuItem("Transmittal");
                 getHostServices().showDocument(downloader.getLink(truck));
                 Hyperlink link = new Hyperlink(truck);
                 link.setOnAction(actionEvent1 -> {
                     getHostServices().showDocument(downloader.getLink(truck));
                     link.setVisited(false);
                 });
+                transmittalLink.setOnAction(actionEvent2 ->{
+                    List<String> fullNames = downloader.autoCompleteList();
+                    String linkName = null;
+                    for (String name: fullNames){
+                        if (name.startsWith(truck)){
+                            linkName = name;
+                        }
+                    }
+                    System.out.println(transmittalDownloader.getLink(linkName));;
+                    System.out.println(linkName);
+                    System.out.println(fullNames);
+                    getHostServices().showDocument(transmittalDownloader.getLink(linkName) + ".xlsm");
+                    link.setVisited(false);
+                });
+                contextMenu.getItems().add(transmittalLink);
+                link.setContextMenu(contextMenu);
                 bottomRight.getChildren().add(link);
                 bottomRight.getChildren().add(new Text("\n"));
                 middleBottomLeft.setText("");
