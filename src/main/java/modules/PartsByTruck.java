@@ -46,7 +46,6 @@ public class PartsByTruck {
     
     public void addAllFiles (List<File> files) throws IOException {
         for (File file: files){
-            System.out.println("Adding file:" + file.getAbsolutePath());
             this.add(file.getAbsolutePath());
         }
     }
