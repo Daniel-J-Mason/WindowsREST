@@ -6,32 +6,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
-public class TruckMapDownloader {
+public class TransmittalMapDownloader {
     private HashMap<String, String> nameAndLink;
     private ArrayList<String> locationsFromResources;
-    
+
     /**
      * Creates the map once when the class Object is created.
      */
-    public TruckMapDownloader(){
+    public TransmittalMapDownloader(){
         nameAndLink = mapBuilder();
     }
     
     /**
      * Takes one foldername and returns its hyperlink address
+     * @param fullName
      * @return fullPath
      */
-    public void refresh(){
-        nameAndLink = mapBuilder();
+    public String getLink(String fullName){
+        System.out.println("Internal TD link is nameAndLink.get:" + nameAndLink.get(fullName));
+        return nameAndLink.get(fullName);
     }
     
     /**
      * This is for use in recreating the truck map. This only runs on app start up and may need ot be refreshed
      * as units are uploaded
      */
-    public String getLink(String fullName){
-        return nameAndLink.get(fullName);
+    public void refresh(){
+        nameAndLink = mapBuilder();
     }
     
     /**
@@ -42,13 +43,12 @@ public class TruckMapDownloader {
         return new ArrayList<>(nameAndLink.keySet());
     }
     
-    
     /**
      * Creates a Hashmap: This takes file locations from resources, goes through every folder and adds every truck.
      * Key - FileName, Value - FullPath (link)
      * @return Truck HashMap
      */
-    private HashMap<String, String> mapBuilder(){
+    public HashMap<String, String> mapBuilder(){
         HashMap<String, String> mainMap = new HashMap<>();
         
         for (String element: subFolders()){
@@ -59,33 +59,35 @@ public class TruckMapDownloader {
             File tempFile = new File(link.toString());
             String[] templist;
             templist = tempFile.list();
+            System.out.println("Pulling transmittals from:" + element);
             if (templist == null || templist.length == 0)
                 continue;
             for(String subelement: templist){
-                StringBuilder subLink = new StringBuilder();
-                subLink.append(getServerPathToUnits());
-                subLink.append("\\");
-                subLink.append(element);
-                subLink.append("\\");
-                subLink.append(subelement);
-                mainMap.put(subelement, subLink.toString());
+                if (!subelement.startsWith("~") && subelement.endsWith(".xlsm") &&
+                        !subelement.toLowerCase().contains("interior") && !subelement.toLowerCase().contains("cabinet")) {
+                    StringBuilder subLink = new StringBuilder();
+                    subLink.append(getServerPathToUnits());
+                    subLink.append("\\");
+                    subLink.append(element);
+                    subLink.append("\\");
+                    subLink.append(subelement);
+                    mainMap.put(subelement, subLink.toString());
+                }
             }
-            
         }
-        
         return mainMap;
     }
     
     /**
-     * Pulls from resources listing from exterior, interior, and completed units folders
+     * Pulls from resources listing all archive folder locations
      * @return List of all Archive sub folders
      */
     private ArrayList<String> subFolders(){
         ArrayList<String> files = new ArrayList<>();
-    
+        
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/truckLocations.txt");
+            inputStream = getClass().getResourceAsStream("/transmittalLocations.txt");
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 files.add(scanner.nextLine());
@@ -99,7 +101,7 @@ public class TruckMapDownloader {
     }
     
     /**
-     * Uses the resources folder to pull Working folder location on the server.
+     * Uses the resources folder to pull Archive location on the server.
      * @return Server location String
      */
     private String getServerPathToUnits(){
@@ -110,6 +112,8 @@ public class TruckMapDownloader {
             
             inputStream = getClass().getResourceAsStream("/FileLocations.txt");
             Scanner scanner = new Scanner(inputStream);
+            scanner.nextLine();
+            scanner.nextLine();
             scanner.nextLine();
             scanner.nextLine();
             String[] parts = scanner.nextLine().split(";");
