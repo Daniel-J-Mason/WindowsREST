@@ -4,7 +4,6 @@ package application;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.HostServices;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -71,7 +70,7 @@ public class MainViewController {
         workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
         
         ArrayList<String> truckAutocompleteArray = downloader.autoCompleteList();
-        ArrayList<String> archiveAutocompleteArray = downloader.autoCompleteList();
+        ArrayList<String> archiveAutocompleteArray = archiveDownloader.autoCompleteList();
         
         TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
         

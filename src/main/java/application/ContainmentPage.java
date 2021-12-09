@@ -48,7 +48,7 @@ public class ContainmentPage {
     
     HostServices hostServices;
     
-    public void initialize() throws URISyntaxException, IOException {
+    public void initialize() throws IOException {
         HashMap<String, String> locations = fileLocationsHashmap();
         downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
         transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
@@ -236,7 +236,7 @@ public class ContainmentPage {
         }
     }
     
-    public HashMap<String, String> fileLocationsHashmap() throws URISyntaxException, IOException {
+    public HashMap<String, String> fileLocationsHashmap() throws IOException {
         HashMap<String, String> locations;
         InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
         String myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);

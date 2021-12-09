@@ -4,30 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="This is a buggy pre-2.0 snapshot. Plans are to either clean up this iteration or fork over to FXML and clean up.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_11_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/modules/serverMappingFrontloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/workOrderLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WindowsREST.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WindowsREST.iml" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/modelComparison.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/ContainmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ContainmentPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/ArchiveTruckMapDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/PartsByTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/PartsByTruck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/TransmittalMapDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/TruckMapDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FileLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/containmentPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -282,7 +268,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638963847725</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed">
+      <created>1638992970412</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1638992970412</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed">
+      <created>1638993052471</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1638993052471</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +304,7 @@
     <MESSAGE value="Updated truck archive,&#10;Confirmed (7) bug fixes, rewrote FileSortComparator to work correctly.&#10;Stable 1.0.0 release." />
     <MESSAGE value="Documentation post 1.0.0 release" />
     <MESSAGE value="This is a buggy pre-2.0 snapshot. Plans are to either clean up this iteration or fork over to FXML and clean up." />
-    <option name="LAST_COMMIT_MESSAGE" value="This is a buggy pre-2.0 snapshot. Plans are to either clean up this iteration or fork over to FXML and clean up." />
+    <MESSAGE value="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed" />
   </component>
 </project>
