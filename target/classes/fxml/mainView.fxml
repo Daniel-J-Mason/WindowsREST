@@ -35,21 +35,30 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="drawingSearchField" />
-                  <Button fx:id="drawingSearchButton" mnemonicParsing="false" text="Search" />
+                  <TextField fx:id="drawingSearchField" promptText="Search with or without d/D">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></TextField>
+                  <Button fx:id="drawingSearchButton" mnemonicParsing="false" text="Search">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Button>
                   <Label fx:id="drawingSearchErrorLabel" />
-                  <Label text="Search for units based on part number" />
+                  <Label text="Search for units based on part number">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
                   <Button fx:id="containment" mnemonicParsing="false" text="Launch" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Label text=".dxf Number (123456 format):">
+                  <Label text=".dxf Number:">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="dxfSearchField" />
+                  <TextField fx:id="dxfSearchField" promptText="Search with 123456 format" />
                   <Button fx:id="dxfSearchButton" mnemonicParsing="false" text="Search" />
                   <Label fx:id="dxfSearchErrorLabel" />
                </children>
@@ -61,15 +70,15 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="truckSearchField" />
+                  <TextField fx:id="truckSearchField" promptText="Autocomplete using name or number" />
                   <Button fx:id="truckSearchButton" mnemonicParsing="false" text="Search" />
                   <Label fx:id="truckSearchErrorLabel" />
-                  <Label text="Drawing Number:">
+                  <Label text="Archive Truck Number:">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="archiveTruckSearchField" />
+                  <TextField fx:id="archiveTruckSearchField" promptText="Autocomplete using name or number" />
                   <Button fx:id="archiveTruckSearchButton" mnemonicParsing="false" text="Search" />
                   <Label fx:id="archiveTruckSearchErrorLabel" />
                   <Label text="Click to open 2004 master files">

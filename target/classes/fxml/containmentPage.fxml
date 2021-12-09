@@ -22,7 +22,7 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <TextField fx:id="partNumberField" onKeyPressed="#enterPartNumber" />
+            <TextField fx:id="partNumberField" onKeyPressed="#enterPartNumber" prefWidth="300.0" promptText="For trucks containing multiple parts use ," />
             <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
             <Label fx:id="errorLabel" textFill="RED" />
          </children>
