@@ -1,4 +1,4 @@
-package application;
+package Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,7 +15,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -31,6 +30,9 @@ public class ContainmentPage {
     public CheckBox type7Box;
     public CheckBox type9Box;
     public CheckBox toggleBox;
+    public TextField partNumberField;
+    public Label errorLabel;
+    public TextFlow displayField;
 
     private final List<CheckBox> brandCheckboxes = new ArrayList<>();
     private final List<CheckBox> typeCheckboxes = new ArrayList<>();
@@ -38,10 +40,7 @@ public class ContainmentPage {
     private final String queryFolder = "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\Working Folder - Unshipped Units" +
             "\\4. Personal Working Folder\\Daniel Mason\\Scripts\\Critical Location Folder\\QueryableData";
     
-    public TextField partNumberField;
     private final HashMap<CheckBox, String> checkBoxFiles = new HashMap<>();
-    public Label errorLabel;
-    public TextFlow displayField;
     private final serverMappingFrontloader downloader = new serverMappingFrontloader();
     private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
     private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();

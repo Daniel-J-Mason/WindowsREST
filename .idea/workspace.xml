@@ -4,16 +4,33 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/modelComparison.fxml" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_06.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_SparseBitSet_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_compress_1_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_4_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_3_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/WindowsREST.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WindowsREST.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_21,_6_45_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_8_21__6_45_AM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/ContainmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/ContainmentPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/ContainmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +41,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -66,7 +83,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WindowsREST (copy)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPage.java" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.3678344" />
@@ -85,7 +102,7 @@
       <recent name="$PROJECT_DIR$/.." />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.scratch">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.Main" />
       <module name="WindowsREST" />
@@ -130,7 +147,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="application.*" />
+          <option name="PATTERN" value="Controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -167,9 +184,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.scratch" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Maven.WindowsREST [clean]" />
-        <item itemvalue="Application.scratch" />
         <item itemvalue="Application.SearchBar" />
         <item itemvalue="Application.TransmittalMapDownloader" />
       </list>
@@ -282,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638993052471</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison">
+      <created>1639064212218</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1639064212218</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -305,6 +329,7 @@
     <MESSAGE value="Documentation post 1.0.0 release" />
     <MESSAGE value="This is a buggy pre-2.0 snapshot. Plans are to either clean up this iteration or fork over to FXML and clean up." />
     <MESSAGE value="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed" />
+    <MESSAGE value="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison" />
   </component>
 </project>
