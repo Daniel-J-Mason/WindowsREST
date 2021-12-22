@@ -1,4 +1,4 @@
-package application;
+package Controllers;
 
 
 import com.google.gson.Gson;
@@ -35,6 +35,9 @@ public class MainViewController {
     public Label dxfSearchErrorLabel;
     public TextField truckSearchField;
     public Button truckSearchButton;
+    public RadioButton truckRadioButton;
+    public RadioButton workOrderRadioButton;
+    public RadioButton transmittalRadioButton;
     public Label truckSearchErrorLabel;
     public TextField archiveTruckSearchField;
     public Button archiveTruckSearchButton;
@@ -58,9 +61,11 @@ public class MainViewController {
     private final serverMappingFrontloader archiveDownloader = new serverMappingFrontloader();
     private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
     private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();
+    private ArrayList<String> truckAutocompleteArray;
     
     public HostServices hostServices;
 
+    
     
     public void initialize() throws IOException {
         HashMap<String, String> locations = fileLocationsHashmap();
@@ -69,12 +74,19 @@ public class MainViewController {
         transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
         workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
         
-        ArrayList<String> truckAutocompleteArray = downloader.autoCompleteList();
+        truckAutocompleteArray = downloader.autoCompleteList();
         ArrayList<String> archiveAutocompleteArray = archiveDownloader.autoCompleteList();
         
         TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
         
         TextFields.bindAutoCompletion(archiveTruckSearchField, archiveAutocompleteArray);
+        
+        ToggleGroup searchToggleGroup = new ToggleGroup();
+        truckRadioButton.setToggleGroup(searchToggleGroup);
+        workOrderRadioButton.setToggleGroup(searchToggleGroup);
+        transmittalRadioButton.setToggleGroup(searchToggleGroup);
+        truckRadioButton.setSelected(true);
+        
         
         drawingSearchField.setOnKeyPressed(keyEvent ->{
             if (keyEvent.getCode().equals(KeyCode.ENTER)){
@@ -128,10 +140,12 @@ public class MainViewController {
         archiveTruckSearchButton.setOnAction((actionEvent -> archiveTruckSearch()));
     
         refreshButton.setOnAction(actionEvent -> {
+            workOrderDownloader.refresh();
+            transmittalDownloader.refresh();
             downloader.refresh();
-            archiveDownloader.refresh();
             truckAutocompleteArray.clear();
             truckAutocompleteArray.addAll(downloader.autoCompleteList());
+            archiveDownloader.refresh();
             archiveAutocompleteArray.clear();
             archiveAutocompleteArray.addAll(archiveDownloader.autoCompleteList());
         });
@@ -230,7 +244,6 @@ public class MainViewController {
         if (downloader.getLink(truck) == null) {
             truckSearchErrorLabel.setText("Error: " + truck + " not found!");
         } else {
-            hostServices.showDocument(downloader.getLink(truck));
             Hyperlink link = new Hyperlink(truck);
             ContextMenu contextMenu = new ContextMenu();
             MenuItem transmittalLink = new MenuItem("Transmittal");
@@ -256,7 +269,6 @@ public class MainViewController {
                 }
             }
             
-            
             String finalTransmittalLinkName = transmittalLinkName;
             transmittalLink.setOnAction(actionEvent2 -> {
                 hostServices.showDocument(transmittalDownloader.getLink(finalTransmittalLinkName));
@@ -266,6 +278,15 @@ public class MainViewController {
             workOrderLink.setOnAction(actionEvent3 -> {
                 hostServices.showDocument(workOrderDownloader.getLink(finalWorkOrderLinkName));
             });
+            
+            if (truckRadioButton.isSelected()){
+                hostServices.showDocument(downloader.getLink(truck));
+            } else if (workOrderRadioButton.isSelected()) {
+                hostServices.showDocument(workOrderDownloader.getLink(finalWorkOrderLinkName));
+            } else {
+                hostServices.showDocument(transmittalDownloader.getLink(finalTransmittalLinkName));
+            }
+            
             contextMenu.getItems().add(transmittalLink);
             contextMenu.getItems().add(workOrderLink);
             link.setContextMenu(contextMenu);

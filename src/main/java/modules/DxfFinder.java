@@ -107,7 +107,7 @@ public class DxfFinder {
         }
         locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>(){}.getType());
     
-        return locations.get("dxfLocations");
+        return locations.get("dxfLocation");
     }
     
     /**
