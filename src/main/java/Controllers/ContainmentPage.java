@@ -52,7 +52,6 @@ public class ContainmentPage {
         downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
         transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
         workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
-
         
         //Marry checkboxes to strings
         checkBoxFiles.put(wheeledCoachBox, "WHEELED_COACH");
