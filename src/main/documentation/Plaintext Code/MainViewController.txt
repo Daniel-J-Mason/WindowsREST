@@ -57,47 +57,47 @@ public class MainViewController {
     public TextFlow truckHistoryTextFlow;
     public Button containment;
     public Button miscSearchButton;
-    
+
     private final ServerMappingFrontloader downloader = new ServerMappingFrontloader();
     private final ServerMappingFrontloader archiveDownloader = new ServerMappingFrontloader();
     private final ServerMappingFrontloader transmittalDownloader = new ServerMappingFrontloader();
     private final ServerMappingFrontloader workOrderDownloader = new ServerMappingFrontloader();
     private ArrayList<String> truckAutocompleteArray;
-    
+
     public HostServices hostServices;
 
-    
-    
+
+
     public void initialize() throws IOException {
         HashMap<String, String> locations = fileLocationsHashmap();
         downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
         archiveDownloader.setLocation(locations.get("TruckArchiveLocations"), "/archiveTruckLocations.txt");
         transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
         workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
-        
+
         truckAutocompleteArray = downloader.autoCompleteList();
         ArrayList<String> archiveAutocompleteArray = archiveDownloader.autoCompleteList();
-        
+
         TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
-        
+
         TextFields.bindAutoCompletion(archiveTruckSearchField, archiveAutocompleteArray);
-        
+
         ToggleGroup searchToggleGroup = new ToggleGroup();
         truckRadioButton.setToggleGroup(searchToggleGroup);
         workOrderRadioButton.setToggleGroup(searchToggleGroup);
         transmittalRadioButton.setToggleGroup(searchToggleGroup);
         truckRadioButton.setSelected(true);
-        
-        
+
+
         drawingSearchField.setOnKeyPressed(keyEvent ->{
             if (keyEvent.getCode().equals(KeyCode.ENTER)){
                 drawingSearch();
                 }
         });
-        
+
         drawingSearchButton.setOnAction((actionEvent -> drawingSearch()));
-        
-        
+
+
         containment.setOnAction((actionEvent -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/containmentPage.fxml"));
             Parent root = null;
@@ -116,31 +116,31 @@ public class MainViewController {
             containmentStage.setTitle("REST Units by Parts");
             containmentStage.show();
         }));
-        
+
         dxfSearchField.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 dxfSearch();
             }
         });
-        
+
         dxfSearchButton.setOnAction(keyEvent -> dxfSearch());
-        
+
         truckSearchField.setOnKeyPressed(keyEvent ->{
             if (keyEvent.getCode().equals(KeyCode.ENTER)){
                 truckSearch();
             }
         });
-        
+
         truckSearchButton.setOnAction((actionEvent -> truckSearch()));
-        
+
         archiveTruckSearchField.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode().equals(KeyCode.ENTER)) {
                 archiveTruckSearch();
             }
         });
-        
+
         archiveTruckSearchButton.setOnAction((actionEvent -> archiveTruckSearch()));
-    
+
         refreshButton.setOnAction(actionEvent -> {
             workOrderDownloader.refresh();
             transmittalDownloader.refresh();
@@ -151,7 +151,7 @@ public class MainViewController {
             archiveAutocompleteArray.clear();
             archiveAutocompleteArray.addAll(archiveDownloader.autoCompleteList());
         });
-    
+
         clearAllButton.setOnAction(actionEvent -> {
             drawingSearchField.setText("");
             drawingSearchErrorLabel.setText("");
@@ -166,21 +166,21 @@ public class MainViewController {
             dxfHistoryTextFlow.getChildren().clear();
             truckHistoryTextFlow.getChildren().clear();
         });
-    
+
         questionsLink.setOnAction(actionEvent -> {
             hostServices.showDocument("\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\" +
                     "Working Folder - Unshipped Units\\4. Personal Working Folder" +
                     "\\Daniel Mason\\R.E.S.T. Documentation");
             questionsLink.setVisited(false);
         });
-    
+
 
     }
-    
+
     public void setGetHostController(HostServices hostServices){
         this.hostServices=hostServices;
     }
-    
+
     public HashMap<String, String> fileLocationsHashmap() throws IOException {
         HashMap<String, String> locations;
         InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
@@ -189,7 +189,7 @@ public class MainViewController {
         locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>(){}.getType());
         return locations;
     }
-    
+
     public void drawingSearch(){
         String drawing = drawingSearchField.getText();
         DrawingFinder searcher = new DrawingFinder(drawing);
@@ -208,9 +208,9 @@ public class MainViewController {
             drawingSearchErrorLabel.setText("");
         }
     }
-    
+
     public void dxfSearch(){
-    
+
         dxfFamilyTextFlow.getChildren().clear();
         String dxf = dxfSearchField.getText();
         DxfFinder searcher = new DxfFinder(dxf);
@@ -237,11 +237,11 @@ public class MainViewController {
             dxfSearchErrorLabel.setText("");
         }
         dxfSearchField.setText("");
-    
+
     }
-    
+
     public void truckSearch(){
-    
+
         String truck = truckSearchField.getText();
         if (downloader.getLink(truck) == null) {
             truckSearchErrorLabel.setText("Error: " + truck + " not found!");
@@ -254,7 +254,7 @@ public class MainViewController {
                 hostServices.showDocument(downloader.getLink(truck));
                 link.setVisited(false);
             });
-            
+
             List<String> fullNameTransmittal = transmittalDownloader.autoCompleteList();
             List<String> workOrders = workOrderDownloader.autoCompleteList();
             String transmittalLinkName = null;
@@ -263,14 +263,14 @@ public class MainViewController {
                     transmittalLinkName = name;
                 }
             }
-    
+
             String workOrderLinkName = null;
             for (String name: workOrders){
                 if (name.startsWith(truck.substring(0, 6))){
                     workOrderLinkName = name;
                 }
             }
-            
+
             String finalTransmittalLinkName = transmittalLinkName;
             transmittalLink.setOnAction(actionEvent2 -> {
                 hostServices.showDocument(transmittalDownloader.getLink(finalTransmittalLinkName));
@@ -280,7 +280,7 @@ public class MainViewController {
             workOrderLink.setOnAction(actionEvent3 -> {
                 hostServices.showDocument(workOrderDownloader.getLink(finalWorkOrderLinkName));
             });
-            
+
             if (truckRadioButton.isSelected()){
                 hostServices.showDocument(downloader.getLink(truck));
             } else if (workOrderRadioButton.isSelected()) {
@@ -288,7 +288,7 @@ public class MainViewController {
             } else {
                 hostServices.showDocument(transmittalDownloader.getLink(finalTransmittalLinkName));
             }
-            
+
             contextMenu.getItems().add(transmittalLink);
             contextMenu.getItems().add(workOrderLink);
             link.setContextMenu(contextMenu);
@@ -297,9 +297,9 @@ public class MainViewController {
             truckSearchField.setText("");
             truckSearchErrorLabel.setText("");
         }
-    
+
     }
-    
+
     public void archiveTruckSearch(){
         String truck = archiveTruckSearchField.getText();
         if (archiveDownloader.getLink(truck) == null) {
@@ -317,7 +317,7 @@ public class MainViewController {
             archiveTruckSearchErrorLabel.setText("");
         }
     }
-    
+
     public void openMasterFiles() {
         hostServices.showDocument("file:\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Operations\\2004 Master Files");
     }

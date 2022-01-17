@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import modules.PartsByTruck;
-import modules.serverMappingFrontloader;
+import modules.ServerMappingFrontloader;
 import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class ContainmentPage {
+public class ContainmentPageController {
     public Button searchButton;
     public CheckBox wheeledCoachBox;
     public CheckBox roadRescueBox;
@@ -36,23 +36,23 @@ public class ContainmentPage {
 
     private final List<CheckBox> brandCheckboxes = new ArrayList<>();
     private final List<CheckBox> typeCheckboxes = new ArrayList<>();
-    
+
     private final String queryFolder = "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\Working Folder - Unshipped Units" +
             "\\4. Personal Working Folder\\Daniel Mason\\Scripts\\Critical Location Folder\\QueryableData";
-    
+
     private final HashMap<CheckBox, String> checkBoxFiles = new HashMap<>();
-    private final serverMappingFrontloader downloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();
-    
+    private final ServerMappingFrontloader downloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader transmittalDownloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader workOrderDownloader = new ServerMappingFrontloader();
+
     HostServices hostServices;
-    
+
     public void initialize() throws IOException {
         HashMap<String, String> locations = fileLocationsHashmap();
         downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
         transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
         workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
-        
+
         //Marry checkboxes to strings
         checkBoxFiles.put(wheeledCoachBox, "WHEELED_COACH");
         checkBoxFiles.put(roadRescueBox, "ROAD_RESCUE");
@@ -63,7 +63,7 @@ public class ContainmentPage {
         checkBoxFiles.put(type6Box, "Type 6");
         checkBoxFiles.put(type7Box, "Type 7");
         checkBoxFiles.put(type9Box, "Type 9");
-        
+
         //Box groups for iterating
         brandCheckboxes.add(wheeledCoachBox);
         brandCheckboxes.add(roadRescueBox);
@@ -74,19 +74,19 @@ public class ContainmentPage {
         typeCheckboxes.add(type6Box);
         typeCheckboxes.add(type7Box);
         typeCheckboxes.add(type9Box);
-        
+
         for (CheckBox box: brandCheckboxes){
             box.setSelected(true);
         }
-        
+
         for (CheckBox box: typeCheckboxes){
             box.setSelected(true);
         }
-        
+
         toggleBox.setSelected(true);
 
     }
-    
+
     public void setGetHostController(HostServices hostServices){
         this.hostServices=hostServices;
     }
@@ -98,21 +98,21 @@ public class ContainmentPage {
         List<String> brands = new ArrayList<>();
         List<String> types = new ArrayList<>();
         List<File> postedFiles = new ArrayList<>();
-        
+
         //Collect the brands
         for (CheckBox box: brandCheckboxes){
             if(box.isSelected()){
                 brands.add(checkBoxFiles.get(box));
             }
         }
-    
+
         //Collect the types
         for (CheckBox box: typeCheckboxes){
             if(!box.isSelected()){
                 types.add(checkBoxFiles.get(box));
             }
         }
-        
+
         //Additively create a list of jsons to pull based on brands
         for (File file: Objects.requireNonNull(folder.listFiles())){
             for (String brand: brands){
@@ -121,10 +121,10 @@ public class ContainmentPage {
                 }
             }
         }
-        
+
         //Remove the unchecked types from the created files
         List<File> removalList = new ArrayList<>();
-        
+
         for (File file: postedFiles) {
             for (String type : types) {
                 if (file.getName().contains(type)) {
@@ -137,22 +137,22 @@ public class ContainmentPage {
         for (File file: postedFiles){
             System.out.println(file.getName());
         }
-        
+
         //Add all remaining files to the searchtool
         queryObject.addAllFiles(postedFiles);
-        
+
         //System.out.println(queryObject.trucksWithPart(partNumberField.getText()));
-        
+
         List<String> multiPartList = Arrays.asList(partNumberField.getText().split(","));
-        
+
         List<String> displayList = new ArrayList<>(queryObject.trucksWithParts(multiPartList));
         for (String truck: displayList){
             linkByTruck(truck);
         }
     }
-    
-    
-    
+
+
+
     public void linkByTruck(String truckName){
         List<String> fullNameFolders = downloader.autoCompleteList();
         List<String> fullNameTransmittal = transmittalDownloader.autoCompleteList();
@@ -163,21 +163,21 @@ public class ContainmentPage {
                 folderLinkName = name;
             }
         }
-        
+
         String transmittalLinkName = null;
         for (String name: fullNameTransmittal){
             if (name.startsWith(truckName)){
                 transmittalLinkName = name;
             }
         }
-        
+
         String workOrderLinkName = null;
         for (String name: workOrders){
             if (name.startsWith(truckName)){
                 workOrderLinkName = name;
             }
         }
-        
+
         if (downloader.getLink(folderLinkName) == null) {
             errorLabel.setText("Error: no unit files found!");
         } else {
@@ -207,13 +207,13 @@ public class ContainmentPage {
             errorLabel.setText("");
         }
     }
-    
+
     public void checkBox(ActionEvent actionEvent) throws IOException {
-        
+
         refresh();
-        
+
     }
-    
+
     public void toggleAll(ActionEvent actionEvent) throws IOException {
         for (CheckBox box: brandCheckboxes){
             box.setSelected(toggleBox.isSelected());
@@ -223,17 +223,17 @@ public class ContainmentPage {
         }
         refresh();
     }
-    
+
     public void searchButtonAction() throws IOException {
         refresh();
     }
-    
+
     public void enterPartNumber(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)){
             refresh();
         }
     }
-    
+
     public HashMap<String, String> fileLocationsHashmap() throws IOException {
         HashMap<String, String> locations;
         InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");

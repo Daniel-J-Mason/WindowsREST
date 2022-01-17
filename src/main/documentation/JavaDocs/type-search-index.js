@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"modules","l":"ArchiveTruckMapDownloader"},{"p":"modules","l":"DrawingFinder"},{"p":"modules","l":"DxfFinder"},{"p":"modules","l":"FileSortComparator"},{"p":"application","l":"Main"},{"p":"application","l":"SearchBar"},{"p":"modules","l":"TruckMapDownloader"}];updateSearchResults();

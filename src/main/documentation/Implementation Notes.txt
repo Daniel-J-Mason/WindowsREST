@@ -8,8 +8,16 @@ controlsfx is a third party open license library which works with javafx. This e
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For the maven xml information, there needs to be a few things: Shader for fat jar, dual profiles for windows and linux, and the three dependencies javafx-grapghics, javafx-controls, controlsfx.
-Here is the current one starting below version:
+Here is the current one:
 
+ <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>groupId</groupId>
+    <artifactId>WindowsREST</artifactId>
+    <version>2.1.0</version>
     <profiles>
         <profile>
             <id>linux</id>
@@ -53,6 +61,32 @@ Here is the current one starting below version:
                     <groupId>org.controlsfx</groupId>
                     <artifactId>controlsfx</artifactId>
                     <version>11.1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-fxml</artifactId>
+                    <version>17-ea+11</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                    <version>2.8.9</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                    <version>2.11.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                    <version>4.1.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml</artifactId>
+                    <version>4.1.2</version>
                 </dependency>
             </dependencies>
 
@@ -106,6 +140,32 @@ Here is the current one starting below version:
                     <artifactId>controlsfx</artifactId>
                     <version>11.1.0</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-fxml</artifactId>
+                    <version>17-ea+11</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                    <version>2.8.9</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                    <version>2.11.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                    <version>4.1.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml</artifactId>
+                    <version>4.1.2</version>
+                </dependency>
             </dependencies>
 
             <properties>
@@ -115,7 +175,6 @@ Here is the current one starting below version:
         </profile>
     </profiles>
 </project>
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Bundled with this file will be plaintext versions of the 1.0.0 release of this application.
@@ -129,22 +188,31 @@ This package is also bundled with a copy of the openJDK development libraries so
 
 File Structure prior to compiling is
 
-|--main
+|--java
 |   |--application
 |   	|--Main
 |   	|--SearchBar
+|   |--controllers
+|   	|--ContainmentPage
+|   	|--MainViewController
 |   |--modules
-|   	|--ArchiveTruckMapDownloader
 |   	|--DrawingFinder
 |   	|--DxfFinder
 |   	|--FileSortComparator
 |   	|--TruckMapDownloader
+|   	|--ServerMappingFrontloader
 |   |--resources
-|   	|--archiveTruckLocations
-|   	|--drawingPrefix
-|   	|--FileLocations
+|   	|--DrawingFinder
+|   	    |--containmentPageController.fxml
+|   	    |--mainViewController.fxml
+|   	|--archiveTruckLocations.txt
+|   	|--drawingPrefix.txt
+|   	|--FileLocations.json
+|   	|--REST-ICO.png
 |   	|--REV_LOGO.png
-|   	|--truckLocations
+|   	|--transmittalLocations.txt
+|   	|--truckLocations.txt
+|   	|--workOrderLocations.txt
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

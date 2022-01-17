@@ -166,8 +166,4 @@ public class DxfFinder {
             }
             return new TreeMap<>();
         }
-    
-    
-    
-    
 }
