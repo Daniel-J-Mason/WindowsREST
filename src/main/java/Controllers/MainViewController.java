@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
@@ -15,7 +16,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import modules.DrawingFinder;
 import modules.DxfFinder;
-import modules.serverMappingFrontloader;
+import modules.ServerMappingFrontloader;
 import org.apache.commons.io.IOUtils;
 import org.controlsfx.control.textfield.TextFields;
 import java.io.IOException;
@@ -57,10 +58,10 @@ public class MainViewController {
     public Button containment;
     public Button miscSearchButton;
     
-    private final serverMappingFrontloader downloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader archiveDownloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();
+    private final ServerMappingFrontloader downloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader archiveDownloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader transmittalDownloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader workOrderDownloader = new ServerMappingFrontloader();
     private ArrayList<String> truckAutocompleteArray;
     
     public HostServices hostServices;
@@ -105,13 +106,14 @@ public class MainViewController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ContainmentPage controller = loader.getController();
+            ContainmentPageController controller = loader.getController();
             controller.setGetHostController(hostServices);
             assert root != null;
             Scene scene = new Scene(root);
             Stage containmentStage = new Stage();
             containmentStage.setScene(scene);
-        
+            containmentStage.getIcons().add(new Image(ContainmentPageController.class.getResourceAsStream("/REST-ICO.png")));
+            containmentStage.setTitle("REST Units by Parts");
             containmentStage.show();
         }));
         
