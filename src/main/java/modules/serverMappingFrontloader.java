@@ -6,15 +6,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
-public class TruckMapDownloader {
+//Serves transmittal, truck, archive units, and pending future update for work orders
+public class serverMappingFrontloader {
+    
     private HashMap<String, String> nameAndLink;
-    private ArrayList<String> locationsFromResources;
+    private String location;
+    private String subfolderLocation;
     
     /**
      * Creates the map once when the class Object is created.
      */
-    public TruckMapDownloader(){
+    public serverMappingFrontloader(String location, String subfolderLocation){
+        this.location = location;
+        this.subfolderLocation = subfolderLocation;
+        nameAndLink = mapBuilder();
+    }
+    
+    public serverMappingFrontloader(){
+    }
+    
+    public void setLocation(String location, String subfolderLocation){
+        this.location = location;
+        this.subfolderLocation = subfolderLocation;
         nameAndLink = mapBuilder();
     }
     
@@ -23,16 +36,16 @@ public class TruckMapDownloader {
      * @param fullName
      * @return fullPath
      */
-    public void refresh(){
-        nameAndLink = mapBuilder();
+    public String getLink(String fullName){
+        return nameAndLink.get(fullName);
     }
     
     /**
      * This is for use in recreating the truck map. This only runs on app start up and may need ot be refreshed
      * as units are uploaded
      */
-    public String getLink(String fullName){
-        return nameAndLink.get(fullName);
+    public void refresh(){
+        nameAndLink = mapBuilder();
     }
     
     /**
@@ -42,7 +55,6 @@ public class TruckMapDownloader {
     public ArrayList<String> autoCompleteList(){
         return new ArrayList<>(nameAndLink.keySet());
     }
-    
     
     /**
      * Creates a Hashmap: This takes file locations from resources, goes through every folder and adds every truck.
@@ -63,13 +75,18 @@ public class TruckMapDownloader {
             if (templist == null || templist.length == 0)
                 continue;
             for(String subelement: templist){
-                StringBuilder subLink = new StringBuilder();
-                subLink.append(getServerPathToUnits());
-                subLink.append("\\");
-                subLink.append(element);
-                subLink.append("\\");
-                subLink.append(subelement);
-                mainMap.put(subelement, subLink.toString());
+                //This is specifically to help with excel, and it doesnt impact other files. May either parse off
+                //Section for filters or create a separate method
+                if (!subelement.startsWith("~") &&
+                        !subelement.toLowerCase().contains("interior") && !subelement.toLowerCase().contains("cabinet")) {
+                    StringBuilder subLink = new StringBuilder();
+                    subLink.append(getServerPathToUnits());
+                    subLink.append("\\");
+                    subLink.append(element);
+                    subLink.append("\\");
+                    subLink.append(subelement);
+                    mainMap.put(subelement, subLink.toString());
+                }
             }
             
         }
@@ -78,15 +95,15 @@ public class TruckMapDownloader {
     }
     
     /**
-     * Pulls from resources listing from exterior, interior, and completed units folders
+     * Pulls from resources listing all archive folder locations
      * @return List of all Archive sub folders
      */
     private ArrayList<String> subFolders(){
         ArrayList<String> files = new ArrayList<>();
-    
+        
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/truckLocations.txt");
+            inputStream = getClass().getResourceAsStream(subfolderLocation);
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 files.add(scanner.nextLine());
@@ -94,31 +111,15 @@ public class TruckMapDownloader {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        
-        locationsFromResources = files;
+    
         return files;
     }
     
     /**
-     * Uses the resources folder to pull Working folder location on the server.
+     * Uses the resources' folder to pull Archive location on the server.
      * @return Server location String
      */
     private String getServerPathToUnits(){
-        String returnString = "";
-        
-        InputStream inputStream = null;
-        try{
-            
-            inputStream = getClass().getResourceAsStream("/FileLocations.txt");
-            Scanner scanner = new Scanner(inputStream);
-            scanner.nextLine();
-            scanner.nextLine();
-            String[] parts = scanner.nextLine().split(";");
-            returnString = parts[1];
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-        return returnString;
+        return location;
     }
 }
