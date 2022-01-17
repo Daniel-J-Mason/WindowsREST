@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 //Serves transmittal, truck, archive units, and pending future update for work orders
-public class serverMappingFrontloader {
+public class ServerMappingFrontloader {
     
     private HashMap<String, String> nameAndLink;
     private String location;
@@ -16,13 +16,13 @@ public class serverMappingFrontloader {
     /**
      * Creates the map once when the class Object is created.
      */
-    public serverMappingFrontloader(String location, String subfolderLocation){
+    public ServerMappingFrontloader(String location, String subfolderLocation){
         this.location = location;
         this.subfolderLocation = subfolderLocation;
         nameAndLink = mapBuilder();
     }
     
-    public serverMappingFrontloader(){
+    public ServerMappingFrontloader(){
     }
     
     public void setLocation(String location, String subfolderLocation){

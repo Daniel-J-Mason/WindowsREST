@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import modules.PartsByTruck;
-import modules.serverMappingFrontloader;
+import modules.ServerMappingFrontloader;
 import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class ContainmentPage {
+public class ContainmentPageController {
     public Button searchButton;
     public CheckBox wheeledCoachBox;
     public CheckBox roadRescueBox;
@@ -41,9 +41,9 @@ public class ContainmentPage {
             "\\4. Personal Working Folder\\Daniel Mason\\Scripts\\Critical Location Folder\\QueryableData";
     
     private final HashMap<CheckBox, String> checkBoxFiles = new HashMap<>();
-    private final serverMappingFrontloader downloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader transmittalDownloader = new serverMappingFrontloader();
-    private final serverMappingFrontloader workOrderDownloader = new serverMappingFrontloader();
+    private final ServerMappingFrontloader downloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader transmittalDownloader = new ServerMappingFrontloader();
+    private final ServerMappingFrontloader workOrderDownloader = new ServerMappingFrontloader();
     
     HostServices hostServices;
     
