@@ -1,7 +1,13 @@
 package modules;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class DrawingFinder {
@@ -30,7 +36,7 @@ public class DrawingFinder {
         String actualName = null;
         int count = 0;
         for (String drawingFile: fileContents()){
-            if (drawingFile.startsWith(drawing)){
+            if (drawingFile.toLowerCase().startsWith(drawing)){
                 count++;
                 actualName = drawingFile;
             }
@@ -81,20 +87,18 @@ public class DrawingFinder {
      * private method to pull the base file path from the resources file "FileLocations.txt" Line 1.
      * @return "FileLocations.txt" Line 1 forward of the :
      */
-    private String getServerPathToDrawings(){
-        String returnString = "";
-    
-        InputStream inputStream = null;
-        try{
-            inputStream = getClass().getResourceAsStream("/FileLocations.txt");
-            Scanner scanner = new Scanner(inputStream);
-            String[] parts = scanner.nextLine().split(";");
-            returnString = parts[1];
-        } catch (Exception e){
-            System.out.println(e.getMessage());
+    private String getServerPathToDrawings() {
+        HashMap<String, String> locations;
+        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        String myJson = null;
+        try {
+            myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>(){}.getType());
     
-        return returnString;
+        return locations.get("Drawings");
     }
     
     /**
