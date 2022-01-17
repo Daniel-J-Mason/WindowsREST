@@ -45,7 +45,7 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin></Button>
-                  <Label fx:id="drawingSearchErrorLabel" />
+                  <Label fx:id="drawingSearchErrorLabel" textFill="RED" />
                   <Label text="Search for units based on part number">
                      <padding>
                         <Insets left="10.0" />
@@ -62,7 +62,7 @@
                   </Label>
                   <TextField fx:id="dxfSearchField" promptText="Search with 123456 format" />
                   <Button fx:id="dxfSearchButton" mnemonicParsing="false" text="Search" />
-                  <Label fx:id="dxfSearchErrorLabel" />
+                  <Label fx:id="dxfSearchErrorLabel" textFill="RED" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
@@ -81,7 +81,7 @@
                         <RadioButton fx:id="transmittalRadioButton" mnemonicParsing="false" text="Transmittal" />
                      </children>
                   </HBox>
-                  <Label fx:id="truckSearchErrorLabel" />
+                  <Label fx:id="truckSearchErrorLabel" textFill="RED" />
                   <Label text="Archive Truck Number:">
                      <padding>
                         <Insets left="10.0" />
@@ -89,7 +89,7 @@
                   </Label>
                   <TextField fx:id="archiveTruckSearchField" promptText="Autocomplete using name or number" />
                   <Button fx:id="archiveTruckSearchButton" mnemonicParsing="false" text="Search" />
-                  <Label fx:id="archiveTruckSearchErrorLabel" />
+                  <Label fx:id="archiveTruckSearchErrorLabel" textFill="RED" />
                   <Label text="Click to open 2004 master files">
                      <padding>
                         <Insets left="10.0" />

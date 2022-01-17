@@ -121,7 +121,7 @@ public class MainViewController {
             }
         });
         
-        dxfSearchButton.setOnKeyPressed(keyEvent -> dxfSearch());
+        dxfSearchButton.setOnAction(keyEvent -> dxfSearch());
         
         truckSearchField.setOnKeyPressed(keyEvent ->{
             if (keyEvent.getCode().equals(KeyCode.ENTER)){

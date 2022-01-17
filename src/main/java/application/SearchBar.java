@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -22,6 +23,7 @@ public class SearchBar extends Application{
         controller.setGetHostController(getHostServices());
         Scene scene = new Scene(root);
         window.setScene(scene);
+        window.getIcons().add(new Image(SearchBar.class.getResourceAsStream("/REST-ICO.png")));
         window.show();
     }
 }
