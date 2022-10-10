@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -16,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="655.0" maxWidth="1050.0" minHeight="655.0" minWidth="1050.0" prefHeight="655.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<VBox maxHeight="650.0" maxWidth="1050.0" minHeight="655.0" minWidth="1050.0" prefHeight="730.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <children>
-      <GridPane gridLinesVisible="true" prefHeight="1050.0" prefWidth="600.0">
+      <GridPane gridLinesVisible="true" prefHeight="1200.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,6 +52,13 @@
                         <Insets left="10.0" />
                      </padding></Label>
                   <Button fx:id="containment" mnemonicParsing="false" onAction="#containmentClicked" text="Launch" />
+                  <Label fx:id="archiveTruckSearchErrorLabel" textFill="RED" />
+                  <Label text="Click to open 2004 master files">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="miscSearchButton" mnemonicParsing="false" onAction="#openMasterFiles" text="Search" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
@@ -65,13 +73,23 @@
                   <Label fx:id="dxfSearchErrorLabel" textFill="RED" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+            <VBox prefHeight="275.0" prefWidth="350.0" GridPane.rowIndex="2">
                <children>
-                  <Label text="Truck Number:">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
+                  <HBox>
+                     <children>
+                        <Label text="Truck Number:">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Archive?">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <CheckBox fx:id="archiveCheckBox" mnemonicParsing="false" />
+                     </children>
+                  </HBox>
                   <TextField fx:id="truckSearchField" onKeyPressed="#truckFieldKeyPress" promptText="Autocomplete using name or number" />
                   <HBox alignment="CENTER_LEFT" spacing="5.0">
                      <children>
@@ -96,20 +114,21 @@
                         <RadioButton fx:id="archiveTransmittalRadioButton" mnemonicParsing="false" text="Transmittal" />
                      </children>
                   </HBox>
-                  <Label fx:id="archiveTruckSearchErrorLabel" textFill="RED" />
-                  <Label text="Click to open 2004 master files">
+                  <Label fx:id="truckSearchErrorLabel1" textFill="RED" />
+                  <Label text="Work Orders for Uncompleted Units">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="miscSearchButton" mnemonicParsing="false" onAction="#openMasterFiles" text="Search" />
+                  <TextField fx:id="workOrderSearchField" onKeyPressed="#workOrderSearchKeyPress" promptText="Autocomplete using name or number" />
+                  <Button fx:id="workOrderSearchButton" mnemonicParsing="false" onAction="#workOrderSearchClicked" text="Search" />
                </children>
             </VBox>
             <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="350.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
                   <Image url="@../images/REV_LOGO.png" />
                </image></ImageView>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox prefHeight="210.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label text=".dxf Family Table">
                      <VBox.margin>
@@ -119,9 +138,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ScrollPane fx:id="dxfFamilyPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="dxfFamilyPane" hbarPolicy="NEVER" prefWidth="200.0" vbarPolicy="ALWAYS">
                      <content>
-                        <TextFlow fx:id="dxfFamilyTextFlow" prefHeight="200.0" prefWidth="330.0" />
+                        <TextFlow fx:id="dxfFamilyTextFlow" prefHeight="220.0" prefWidth="330.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -147,9 +166,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ScrollPane fx:id="drawingHistoryPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="drawingHistoryPane" hbarPolicy="NEVER" prefWidth="200.0" vbarPolicy="ALWAYS">
                      <content>
-                        <TextFlow fx:id="drawingHistoryTextFlow" prefHeight="200.0" prefWidth="330.0" />
+                        <TextFlow fx:id="drawingHistoryTextFlow" prefHeight="220.0" prefWidth="330.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -164,9 +183,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ScrollPane fx:id="dxfHistoryPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="dxfHistoryPane" hbarPolicy="NEVER" prefWidth="200.0" vbarPolicy="ALWAYS">
                      <content>
-                        <TextFlow fx:id="dxfHistoryTextFlow" prefHeight="200.0" prefWidth="330.0" />
+                        <TextFlow fx:id="dxfHistoryTextFlow" prefHeight="220.0" prefWidth="330.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -181,9 +200,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <ScrollPane fx:id="truckHistoryPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="truckHistoryPane" hbarPolicy="NEVER" prefWidth="200.0" vbarPolicy="ALWAYS">
                      <content>
-                        <TextFlow fx:id="truckHistoryTextFlow" prefHeight="200.0" prefWidth="330.0" />
+                        <TextFlow fx:id="truckHistoryTextFlow" prefHeight="220.0" prefWidth="330.0" />
                      </content>
                   </ScrollPane>
                </children>
