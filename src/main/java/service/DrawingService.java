@@ -21,7 +21,7 @@ public class DrawingService {
     public Drawing getDrawing(String partNumber) {
         String formattedPartNumber = formatPartNumber(partNumber);
         Drawing drawing = new Drawing();
-        drawing.setPartNumber(formattedPartNumber);
+        drawing.setPartNumber(formattedPartNumber + ".pdf");
         
         int count = 0;
         for (String drawingFile: fileContents(formattedPartNumber)){
@@ -37,14 +37,13 @@ public class DrawingService {
     }
 
     private String getLink(String partNumber){
-        String formattedPartNumber = formatPartNumber(partNumber);
         
         StringBuilder link = new StringBuilder();
         link.append(getServerPathToDrawings());
         link.append("\\");
-        link.append(drawingPrefixMap.get(formattedPartNumber.substring(0, 2)));
+        link.append(drawingPrefixMap.get(partNumber.substring(0, 2)));
         link.append("\\");
-        link.append(formattedPartNumber.toLowerCase());
+        link.append(partNumber.toLowerCase());
         
         return link.toString();
     }

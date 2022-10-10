@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class TruckService {
     private HashMap<String, String> locations;
@@ -32,13 +33,38 @@ public class TruckService {
         String truckNumber = truckFileName.substring(0, 6);
         truck.setTruckNumber(truckNumber);
         truck.setTruckFileName(truckFileName);
-        truck.setFileLocation(truckDatabase.getLink(truckNumber));
-        truck.setTransmittalLocation(truckDatabase.getLink(truckNumber));
+        truck.setFileLocation(truckDatabase.getLink(truckFileName));
+        truck.setTransmittalLocation(getTransmittalLink(truckNumber));
+        truck.setWorkOrderLocation(getWorkOrderLink(truckNumber));
         return truck;
     }
     
     public ArrayList<String> getAutoCompleteList(){
         return truckDatabase.autoCompleteList();
+    }
+    
+    private String getTransmittalLink(String truckNumber) {
+        List<String> listOfTransmittals = transmittalDatabase.autoCompleteList();
+        
+        for (String transmittal: listOfTransmittals){
+            if (transmittal.startsWith(truckNumber)){
+                return transmittalDatabase.getLink(transmittal);
+            }
+        }
+        
+        return null;
+    }
+    
+    private String getWorkOrderLink(String truckNumber) {
+        List<String> listOfWorkOrders = workOrderDatabase.autoCompleteList();
+        
+        for (String workOrder: listOfWorkOrders){
+            if (workOrder.startsWith(truckNumber)){
+                return workOrderDatabase.getLink(workOrder);
+            }
+        }
+        
+        return null;
     }
     
     public void refreshAllDatabases(){

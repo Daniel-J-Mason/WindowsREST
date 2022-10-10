@@ -5,6 +5,7 @@ import entity.Drawing;
 import entity.Dxf;
 import entity.Truck;
 import javafx.application.HostServices;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,7 @@ import service.DrawingService;
 import service.DxfService;
 import org.controlsfx.control.textfield.TextFields;
 import service.TruckService;
+import service.WorkOrderService;
 
 import java.io.IOException;
 import java.util.*;
@@ -59,9 +61,13 @@ public class MainViewController {
     public RadioButton archiveTruckRadioButton;
     public RadioButton archiveWorkOrderRadioButton;
     public RadioButton archiveTransmittalRadioButton;
+    public TextField workOrderSearchField;
+    public CheckBox archiveCheckBox;
     
     private final DrawingService drawingService = new DrawingService();
     private final DxfService dxfService = new DxfService();
+    private final WorkOrderService workOrderService = new WorkOrderService();
+    
     private final TruckService truckService =
             new TruckService("TruckLocations", "/truckLocations.txt",
                     "TransmittalLocations", "/transmittalLocations.txt",
@@ -70,20 +76,24 @@ public class MainViewController {
             new TruckService("TruckArchiveLocations", "/archiveTruckLocations.txt",
                     "TransmittalArchiveLocations", "/archiveTransmittalLocations.txt",
                     "WorkOrderLocations", "/archiveWorkOrderLocations.txt");
+    
     private ArrayList<String> truckAutocompleteArray;
     private ArrayList<String> archiveAutocompleteArray;
+    private ArrayList<String> workOrderAutocompleteArray;
     
     public HostServices hostServices;
     
     
     public void initialize() throws IOException {
-
+        
         
         truckAutocompleteArray = truckService.getAutoCompleteList();
         archiveAutocompleteArray = archiveTruckService.getAutoCompleteList();
+        workOrderAutocompleteArray = workOrderService.getWorkOrderList();
         
         TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
         TextFields.bindAutoCompletion(archiveTruckSearchField, archiveAutocompleteArray);
+        TextFields.bindAutoCompletion(workOrderSearchField, workOrderAutocompleteArray);
         
         ToggleGroup searchToggleGroup = new ToggleGroup();
         
@@ -91,7 +101,7 @@ public class MainViewController {
         workOrderRadioButton.setToggleGroup(searchToggleGroup);
         transmittalRadioButton.setToggleGroup(searchToggleGroup);
         truckRadioButton.setSelected(true);
-    
+        
         ToggleGroup archiveSearchToggleGroup = new ToggleGroup();
         archiveTruckRadioButton.setToggleGroup(archiveSearchToggleGroup);
         archiveWorkOrderRadioButton.setToggleGroup(archiveSearchToggleGroup);
@@ -128,6 +138,11 @@ public class MainViewController {
         containmentStage.show();
     }
     
+    public void openMasterFiles() {
+        hostServices.showDocument("file:\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Operations\\2004 Master Files");
+    }
+    
+    
     public void dxfFieldKeyPress(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             dxfSearch();
@@ -158,16 +173,25 @@ public class MainViewController {
         archiveTruckSearch();
     }
     
-    public void openMasterFiles() {
-        hostServices.showDocument("file:\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Operations\\2004 Master Files");
+    public void workOrderSearchKeyPress(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            workOrderSearch();
+        }
+    }
+    
+    public void workOrderSearchClicked(ActionEvent actionEvent) {
+        workOrderSearch();
     }
     
     public void refreshClicked() {
         truckService.refreshAllDatabases();
+        workOrderService.refresh();
         truckAutocompleteArray.clear();
         truckAutocompleteArray.addAll(truckService.getAutoCompleteList());
         archiveAutocompleteArray.clear();
         archiveAutocompleteArray.addAll(archiveTruckService.getAutoCompleteList());
+        workOrderAutocompleteArray.clear();
+        workOrderAutocompleteArray.addAll(workOrderService.getWorkOrderList());
     }
     
     public void clearAllClicked() {
@@ -196,7 +220,7 @@ public class MainViewController {
     public void drawingSearch() {
         String drawingNumber = drawingSearchField.getText();
         Drawing drawing = drawingService.getDrawing(drawingNumber);
-        if (drawing == null) {
+        if (drawing.getFileLocation() == null) {
             drawingSearchErrorLabel.setText("Error: " + drawingNumber + " not found!");
         } else {
             hostServices.showDocument(drawing.getFileLocation());
@@ -221,13 +245,9 @@ public class MainViewController {
                 dxfFamilyTextFlow.getChildren().add(instanceLink);
                 instanceLink.setOnAction(actionEvent -> {
                     hostServices.showDocument(familyTable.get(item));
-                    Hyperlink separateCopyOfInstanceLink = new Hyperlink(item);
+                    Hyperlink separateCopyOfInstanceLink = hyperLinkWithOpenLocation(item, familyTable.get(item));
                     dxfHistoryTextFlow.getChildren().add(separateCopyOfInstanceLink);
                     dxfHistoryTextFlow.getChildren().add(new Text("\n"));
-                    separateCopyOfInstanceLink.setOnAction(actionEvent1 -> {
-                        hostServices.showDocument(familyTable.get(item));
-                        separateCopyOfInstanceLink.setVisited(false);
-                    });
                     instanceLink.setVisited(false);
                 });
                 dxfFamilyTextFlow.getChildren().add(new Text("\n"));
@@ -288,6 +308,11 @@ public class MainViewController {
         }
     }
     
+    private void workOrderSearch() {
+        String fullWorkOrderName = workOrderSearchField.getText();
+        hostServices.showDocument(workOrderService.getLink(fullWorkOrderName));
+    }
+    
     private Hyperlink truckLinkNode(Truck truck) {
         Hyperlink mainLink = hyperLinkNode(truck.getTruckFileName(), truck.getFileLocation());
         ContextMenu contextMenu = new ContextMenu();
@@ -300,11 +325,13 @@ public class MainViewController {
     
     private MenuItem menuItemLink(String name, String link) {
         MenuItem menuItem = new MenuItem(name);
-        EventHandler<MouseEvent> mouseHandler = hyperLinkHandler(link);
-        menuItem.addEventHandler(MouseEvent.ANY, mouseHandler);
+        menuItem.setOnAction(actionEvent -> {
+            hostServices.showDocument(link);
+        });
         return menuItem;
     }
     
+    //For Truck Hyperlink since right click is a ContextMenu
     private Hyperlink hyperLinkNode(String name, String link) {
         Hyperlink hyperlink = new Hyperlink(name);
         hyperlink.setOnAction(actionEvent -> {
@@ -318,9 +345,9 @@ public class MainViewController {
     private Hyperlink hyperLinkWithOpenLocation(String name, String link) {
         Hyperlink hyperlink = new Hyperlink(name);
         EventHandler<MouseEvent> mouseHandler = hyperLinkHandler(link);
-        hyperlink.addEventHandler(MouseEvent.ANY,mouseHandler);
+        hyperlink.addEventHandler(MouseEvent.ANY, mouseHandler);
         return hyperlink;
-}
+    }
     
     private EventHandler<MouseEvent> hyperLinkHandler(String link) {
         return event -> {
@@ -328,9 +355,10 @@ public class MainViewController {
             if (event.isPrimaryButtonDown()) {
                 hostServices.showDocument(link);
                 hostLink.setVisited(false);
+                System.out.println("My link is " + link);
             } else if (event.isSecondaryButtonDown()) {
                 try {
-                    Runtime.getRuntime().exec("explorer /select, " + link);
+                    Runtime.getRuntime().exec("explorer.exe /select, " + link);
                     hostLink.setVisited(false);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
