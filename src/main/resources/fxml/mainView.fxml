@@ -88,7 +88,14 @@
                      </padding>
                   </Label>
                   <TextField fx:id="archiveTruckSearchField" onKeyPressed="#archiveTruckFieldKeyPress" promptText="Autocomplete using name or number" />
-                  <Button fx:id="archiveTruckSearchButton" mnemonicParsing="false" onAction="#archiveTruckSearchClicked" text="Search" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Button fx:id="archiveTruckSearchButton" mnemonicParsing="false" onAction="#archiveTruckSearchClicked" text="Search" />
+                        <RadioButton fx:id="archiveTruckRadioButton" mnemonicParsing="false" text="Truck" />
+                        <RadioButton fx:id="archiveWorkOrderRadioButton" mnemonicParsing="false" text="Work Order" />
+                        <RadioButton fx:id="archiveTransmittalRadioButton" mnemonicParsing="false" text="Transmittal" />
+                     </children>
+                  </HBox>
                   <Label fx:id="archiveTruckSearchErrorLabel" textFill="RED" />
                   <Label text="Click to open 2004 master files">
                      <padding>

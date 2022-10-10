@@ -4,39 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="2.1 Cleaned up formatting, cleaned up documentation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/BaseDxf.java" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE, refactor for cleaner code,&#10;3.0.0 will have separated entities forthcoming.">
       <change afterPath="$PROJECT_DIR$/src/main/java/entity/Drawing.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/entity/Truck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/FileDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WindowsREST.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/ArchiveTruckService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/TruckService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/archiveTransmittalLocations.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/archiveWorkOrderLocations.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Implementation Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Implementation Notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ContainmentPageController.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ContainmentPageController.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/MainViewController.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/MainViewController.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/SearchBar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/SearchBar.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Drawing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Dxf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/FileSortComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/FileSortComparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/PartsByTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PartsByTruck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/ServerMappingFrontloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations_backup.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/REST.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REST.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/REV_LOGO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/Drawing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/Dxf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DxfService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/FileDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module/FileDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/FileSortComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module/FileSortComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PartsByTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PartsByTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FileLocations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +100,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="module.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,7 +113,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="module.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,7 +126,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.*" />
+          <option name="PATTERN" value="module.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -351,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642422658123</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="3.0.0-PRERELEASE, refactor for cleaner code,&#10;3.0.0 will have separated entities forthcoming.">
+      <created>1665396785786</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1665396785786</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -377,6 +371,7 @@
     <MESSAGE value="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison" />
     <MESSAGE value="2.0 Stable release&#10;Last update was radio buttons" />
     <MESSAGE value="2.1 Cleaned up formatting, cleaned up documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.1 Cleaned up formatting, cleaned up documentation" />
+    <MESSAGE value="3.0.0-PRERELEASE, refactor for cleaner code,&#10;3.0.0 will have separated entities forthcoming." />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE, refactor for cleaner code,&#10;3.0.0 will have separated entities forthcoming." />
   </component>
 </project>
