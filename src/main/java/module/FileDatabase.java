@@ -1,4 +1,4 @@
-package service;
+package module;
 
 import java.io.File;
 import java.io.InputStream;

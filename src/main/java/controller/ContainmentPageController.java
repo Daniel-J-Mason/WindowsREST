@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import service.FileDatabase;
+import module.FileDatabase;
 import service.PartsByTruck;
 import org.apache.commons.io.IOUtils;
 import java.io.File;
@@ -19,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class ContainmentPageController {
+    
+    //TODO: refactor to match Service update on main
     public Button searchButton;
     public CheckBox wheeledCoachBox;
     public CheckBox roadRescueBox;

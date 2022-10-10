@@ -1,4 +1,4 @@
-package service;
+package module;
 
 import java.math.BigInteger;
 import java.util.Comparator;
