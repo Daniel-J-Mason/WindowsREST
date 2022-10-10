@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>groupId</groupId>
     <artifactId>WindowsREST</artifactId>
-    <version>2.1.0</version>
+    <version>3.0.0-PRERELEASE</version>
     <profiles>
         <profile>
             <id>linux</id>
