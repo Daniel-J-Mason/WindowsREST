@@ -76,6 +76,11 @@
                     <artifactId>poi-ooxml</artifactId>
                     <version>4.1.2</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-model</artifactId>
+                    <version>3.3.9</version>
+                </dependency>
             </dependencies>
 
             <properties>
@@ -154,6 +159,12 @@
                     <artifactId>poi-ooxml</artifactId>
                     <version>4.1.2</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-model</artifactId>
+                    <version>3.3.9</version>
+                </dependency>
+
             </dependencies>
 
             <properties>

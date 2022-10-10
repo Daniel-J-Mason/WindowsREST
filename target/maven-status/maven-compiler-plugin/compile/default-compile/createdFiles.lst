@@ -5,7 +5,6 @@ application/Main.class
 service/PartsByTruck$1.class
 service/DrawingService.class
 application/SearchBar.class
-service/ArchiveTruckService.class
 controller/MainViewController.class
 service/PartsByTruck$2.class
 service/WorkOrderService$1.class

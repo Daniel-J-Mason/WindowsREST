@@ -4,6 +4,8 @@ package controller;
 import entity.Drawing;
 import entity.Dxf;
 import entity.Truck;
+import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
+import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +23,6 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import service.DrawingService;
 import service.DxfService;
-import org.controlsfx.control.textfield.TextFields;
 import service.TruckService;
 import service.WorkOrderService;
 
@@ -41,9 +42,6 @@ public class MainViewController {
     public RadioButton workOrderRadioButton;
     public RadioButton transmittalRadioButton;
     public Label truckSearchErrorLabel;
-    public TextField archiveTruckSearchField;
-    public Button archiveTruckSearchButton;
-    public Label archiveTruckSearchErrorLabel;
     public ImageView imageView;
     public ScrollPane dxfFamilyPane;
     public TextFlow dxfFamilyTextFlow;
@@ -58,9 +56,6 @@ public class MainViewController {
     public TextFlow truckHistoryTextFlow;
     public Button containment;
     public Button miscSearchButton;
-    public RadioButton archiveTruckRadioButton;
-    public RadioButton archiveWorkOrderRadioButton;
-    public RadioButton archiveTransmittalRadioButton;
     public TextField workOrderSearchField;
     public CheckBox archiveCheckBox;
     
@@ -81,19 +76,24 @@ public class MainViewController {
     private ArrayList<String> archiveAutocompleteArray;
     private ArrayList<String> workOrderAutocompleteArray;
     
+    SuggestionProvider<String> truckSuggestionProvider;
+    SuggestionProvider<String> workOrderSuggestionProvider;
+    
     public HostServices hostServices;
     
     
-    public void initialize() throws IOException {
+    public void initialize() {
         
         
         truckAutocompleteArray = truckService.getAutoCompleteList();
         archiveAutocompleteArray = archiveTruckService.getAutoCompleteList();
         workOrderAutocompleteArray = workOrderService.getWorkOrderList();
         
-        TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
-        TextFields.bindAutoCompletion(archiveTruckSearchField, archiveAutocompleteArray);
-        TextFields.bindAutoCompletion(workOrderSearchField, workOrderAutocompleteArray);
+        truckSuggestionProvider = SuggestionProvider.create(truckAutocompleteArray);
+        new AutoCompletionTextFieldBinding<>(truckSearchField, truckSuggestionProvider);
+        
+        workOrderSuggestionProvider = SuggestionProvider.create(workOrderAutocompleteArray);
+        new AutoCompletionTextFieldBinding<>(workOrderSearchField, workOrderSuggestionProvider);
         
         ToggleGroup searchToggleGroup = new ToggleGroup();
         
@@ -102,11 +102,8 @@ public class MainViewController {
         transmittalRadioButton.setToggleGroup(searchToggleGroup);
         truckRadioButton.setSelected(true);
         
-        ToggleGroup archiveSearchToggleGroup = new ToggleGroup();
-        archiveTruckRadioButton.setToggleGroup(archiveSearchToggleGroup);
-        archiveWorkOrderRadioButton.setToggleGroup(archiveSearchToggleGroup);
-        archiveTransmittalRadioButton.setToggleGroup(archiveSearchToggleGroup);
-        archiveTruckRadioButton.setSelected(true);
+        
+        
     }
     
     public void drawingFieldKeyPress(KeyEvent keyEvent) {
@@ -155,22 +152,20 @@ public class MainViewController {
     
     public void truckFieldKeyPress(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-            truckSearch();
+            if (archiveCheckBox.isSelected()) {
+                archiveTruckSearch();
+            } else {
+                truckSearch();
+            }
         }
     }
     
     public void truckSearchClicked() {
-        truckSearch();
-    }
-    
-    public void archiveTruckFieldKeyPress(KeyEvent keyEvent) {
-        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+        if (archiveCheckBox.isSelected()) {
             archiveTruckSearch();
+        } else {
+            truckSearch();
         }
-    }
-    
-    public void archiveTruckSearchClicked() {
-        archiveTruckSearch();
     }
     
     public void workOrderSearchKeyPress(KeyEvent keyEvent) {
@@ -187,11 +182,17 @@ public class MainViewController {
         truckService.refreshAllDatabases();
         workOrderService.refresh();
         truckAutocompleteArray.clear();
-        truckAutocompleteArray.addAll(truckService.getAutoCompleteList());
-        archiveAutocompleteArray.clear();
-        archiveAutocompleteArray.addAll(archiveTruckService.getAutoCompleteList());
-        workOrderAutocompleteArray.clear();
-        workOrderAutocompleteArray.addAll(workOrderService.getWorkOrderList());
+        
+        if (archiveCheckBox.isSelected()){
+            truckSuggestionProvider.clearSuggestions();
+            truckSuggestionProvider.addPossibleSuggestions(archiveTruckService.getAutoCompleteList());
+        } else {
+            truckSuggestionProvider.clearSuggestions();
+            truckSuggestionProvider.addPossibleSuggestions(truckService.getAutoCompleteList());
+        }
+        
+        workOrderSuggestionProvider.clearSuggestions();
+        workOrderSuggestionProvider.addPossibleSuggestions(workOrderService.getWorkOrderList());
     }
     
     public void clearAllClicked() {
@@ -201,8 +202,6 @@ public class MainViewController {
         dxfSearchErrorLabel.setText("");
         truckSearchField.setText("");
         truckSearchErrorLabel.setText("");
-        archiveTruckSearchField.setText("");
-        archiveTruckSearchErrorLabel.setText("");
         dxfFamilyTextFlow.getChildren().clear();
         drawingHistoryTextFlow.getChildren().clear();
         dxfHistoryTextFlow.getChildren().clear();
@@ -285,17 +284,17 @@ public class MainViewController {
     }
     
     public void archiveTruckSearch() {
-        String truckFileName = archiveTruckSearchField.getText();
+        String truckFileName = truckSearchField.getText();
         Truck archiveTruck = archiveTruckService.getTruck(truckFileName);
         
         if (archiveTruck.getFileLocation() == null) {
-            archiveTruckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
+            truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
         } else {
             Hyperlink truckLinkWithContext = truckLinkNode(archiveTruck);
             
-            if (archiveTruckRadioButton.isSelected()) {
+            if (truckRadioButton.isSelected()) {
                 hostServices.showDocument(archiveTruck.getFileLocation());
-            } else if (archiveWorkOrderRadioButton.isSelected()) {
+            } else if (workOrderRadioButton.isSelected()) {
                 hostServices.showDocument(archiveTruck.getWorkOrderLocation());
             } else {
                 hostServices.showDocument(archiveTruck.getTransmittalLocation());
@@ -303,8 +302,8 @@ public class MainViewController {
             
             truckHistoryTextFlow.getChildren().add(truckLinkWithContext);
             truckHistoryTextFlow.getChildren().add(new Text("\n"));
-            archiveTruckSearchField.setText("");
-            archiveTruckSearchErrorLabel.setText("");
+            truckSearchField.setText("");
+            truckSearchErrorLabel.setText("");
         }
     }
     
@@ -355,7 +354,6 @@ public class MainViewController {
             if (event.isPrimaryButtonDown()) {
                 hostServices.showDocument(link);
                 hostLink.setVisited(false);
-                System.out.println("My link is " + link);
             } else if (event.isSecondaryButtonDown()) {
                 try {
                     Runtime.getRuntime().exec("explorer.exe /select, " + link);
@@ -371,4 +369,13 @@ public class MainViewController {
         this.hostServices = hostServices;
     }
     
+    public void toggleAutoComplete(ActionEvent actionEvent) {
+        if (archiveCheckBox.isSelected()) {
+            truckSuggestionProvider.clearSuggestions();
+            truckSuggestionProvider.addPossibleSuggestions(archiveAutocompleteArray);
+        } else {
+            truckSuggestionProvider.clearSuggestions();
+            truckSuggestionProvider.addPossibleSuggestions(truckAutocompleteArray);
+        }
+    }
 }

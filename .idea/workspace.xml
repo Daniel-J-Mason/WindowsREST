@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE, service module refactor">
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/WorkOrderService.java" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE, archive refactor pre">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_model_3_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_0_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WindowsREST.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/TruckService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/TruckService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/ArchiveTruckService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FileLocations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FileLocations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FileLocations_backup.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/REST.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/REV_LOGO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
@@ -70,13 +71,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kal/IdeaProjects/GitProjects/WindowsREST&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "/home/kal/IdeaProjects/GitProjects/WindowsREST",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -90,7 +92,7 @@
       <recent name="$PROJECT_DIR$/.." />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.WindowsREST [install]">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.Main" />
       <module name="WindowsREST" />
@@ -212,9 +214,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Maven.WindowsREST [install]" />
         <item itemvalue="Maven.WindowsREST [clean]" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.scratch" />
         <item itemvalue="Application.SearchBar" />
       </list>
@@ -362,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665407473646</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="3.0.0-PRERELEASE, archive refactor pre">
+      <created>1665420184471</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1665420184471</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -391,6 +400,7 @@
     <MESSAGE value="3.0.0-PRERELEASE, refactor for cleaner code,&#10;3.0.0 will have separated entities forthcoming." />
     <MESSAGE value="3.0.0-PRERELEASE, refactor for cleaner code," />
     <MESSAGE value="3.0.0-PRERELEASE, service module refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE, service module refactor" />
+    <MESSAGE value="3.0.0-PRERELEASE, archive refactor pre" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE, archive refactor pre" />
   </component>
 </project>
