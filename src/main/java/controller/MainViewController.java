@@ -1,8 +1,9 @@
 package controller;
 
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import entity.Drawing;
+import entity.Dxf;
+import entity.Truck;
 import javafx.application.HostServices;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,15 +18,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import service.Drawing;
-import service.Dxf;
-import service.FileDatabase;
-import org.apache.commons.io.IOUtils;
+import service.DrawingService;
+import service.DxfService;
 import org.controlsfx.control.textfield.TextFields;
+import service.TruckService;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class MainViewController {
@@ -58,11 +56,20 @@ public class MainViewController {
     public TextFlow truckHistoryTextFlow;
     public Button containment;
     public Button miscSearchButton;
+    public RadioButton archiveTruckRadioButton;
+    public RadioButton archiveWorkOrderRadioButton;
+    public RadioButton archiveTransmittalRadioButton;
     
-    private final FileDatabase truckDatabase = new FileDatabase();
-    private final FileDatabase archiveTruckDatabase = new FileDatabase();
-    private final FileDatabase transmittalDatabase = new FileDatabase();
-    private final FileDatabase workOrderDatabase = new FileDatabase();
+    private final DrawingService drawingService = new DrawingService();
+    private final DxfService dxfService = new DxfService();
+    private final TruckService truckService =
+            new TruckService("TruckLocations", "/truckLocations.txt",
+                    "TransmittalLocations", "/transmittalLocations.txt",
+                    "WorkOrderLocations", "/workOrderLocations.txt");
+    private final TruckService archiveTruckService =
+            new TruckService("TruckArchiveLocations", "/archiveTruckLocations.txt",
+                    "TransmittalArchiveLocations", "/archiveTransmittalLocations.txt",
+                    "WorkOrderLocations", "/archiveWorkOrderLocations.txt");
     private ArrayList<String> truckAutocompleteArray;
     private ArrayList<String> archiveAutocompleteArray;
     
@@ -70,23 +77,26 @@ public class MainViewController {
     
     
     public void initialize() throws IOException {
-        HashMap<String, String> locations = fileLocationsHashmap();
-        truckDatabase.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
-        archiveTruckDatabase.setLocation(locations.get("TruckArchiveLocations"), "/archiveTruckLocations.txt");
-        transmittalDatabase.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
-        workOrderDatabase.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
+
         
-        truckAutocompleteArray = truckDatabase.autoCompleteList();
-        archiveAutocompleteArray = archiveTruckDatabase.autoCompleteList();
+        truckAutocompleteArray = truckService.getAutoCompleteList();
+        archiveAutocompleteArray = archiveTruckService.getAutoCompleteList();
         
         TextFields.bindAutoCompletion(truckSearchField, truckAutocompleteArray);
         TextFields.bindAutoCompletion(archiveTruckSearchField, archiveAutocompleteArray);
         
         ToggleGroup searchToggleGroup = new ToggleGroup();
+        
         truckRadioButton.setToggleGroup(searchToggleGroup);
         workOrderRadioButton.setToggleGroup(searchToggleGroup);
         transmittalRadioButton.setToggleGroup(searchToggleGroup);
         truckRadioButton.setSelected(true);
+    
+        ToggleGroup archiveSearchToggleGroup = new ToggleGroup();
+        archiveTruckRadioButton.setToggleGroup(archiveSearchToggleGroup);
+        archiveWorkOrderRadioButton.setToggleGroup(archiveSearchToggleGroup);
+        archiveTransmittalRadioButton.setToggleGroup(archiveSearchToggleGroup);
+        archiveTruckRadioButton.setSelected(true);
     }
     
     public void drawingFieldKeyPress(KeyEvent keyEvent) {
@@ -153,14 +163,11 @@ public class MainViewController {
     }
     
     public void refreshClicked() {
-        workOrderDatabase.refresh();
-        transmittalDatabase.refresh();
-        truckDatabase.refresh();
+        truckService.refreshAllDatabases();
         truckAutocompleteArray.clear();
-        truckAutocompleteArray.addAll(truckDatabase.autoCompleteList());
-        archiveTruckDatabase.refresh();
+        truckAutocompleteArray.addAll(truckService.getAutoCompleteList());
         archiveAutocompleteArray.clear();
-        archiveAutocompleteArray.addAll(archiveTruckDatabase.autoCompleteList());
+        archiveAutocompleteArray.addAll(archiveTruckService.getAutoCompleteList());
     }
     
     public void clearAllClicked() {
@@ -188,12 +195,12 @@ public class MainViewController {
     
     public void drawingSearch() {
         String drawingNumber = drawingSearchField.getText();
-        Drawing drawing = new Drawing(drawingNumber);
-        if (drawing.getDrawing() == null) {
-            drawingSearchErrorLabel.setText("Error: " + drawing + " not found!");
+        Drawing drawing = drawingService.getDrawing(drawingNumber);
+        if (drawing == null) {
+            drawingSearchErrorLabel.setText("Error: " + drawingNumber + " not found!");
         } else {
-            hostServices.showDocument(drawing.getLink());
-            Hyperlink link = hyperLinkWithOpenLocation(drawingNumber, drawing.getLink());
+            hostServices.showDocument(drawing.getFileLocation());
+            Hyperlink link = hyperLinkWithOpenLocation(drawing.getPartNumber(), drawing.getFileLocation());
             drawingHistoryTextFlow.getChildren().add(link);
             drawingHistoryTextFlow.getChildren().add(new Text("\n"));
             drawingSearchField.setText("");
@@ -202,14 +209,13 @@ public class MainViewController {
     }
     
     public void dxfSearch() {
-        
         dxfFamilyTextFlow.getChildren().clear();
-        String dxf = dxfSearchField.getText();
-        Dxf searcher = new Dxf(dxf);
-        if (searcher.getDxf().equals("-1")) {
-            dxfSearchErrorLabel.setText("Error: " + dxf + " not found!"); //!!!
+        String partNumber = dxfSearchField.getText();
+        Dxf dxf = dxfService.getDxf(partNumber);
+        if (dxf.getPartNumber().equals("-1")) {
+            dxfSearchErrorLabel.setText("Error: " + partNumber + " not found!"); //!!!
         } else {
-            TreeMap<String, String> familyTable = searcher.getFamilyTable();
+            TreeMap<String, String> familyTable = dxf.getFamilyTree();
             for (String item : familyTable.keySet()) {
                 Hyperlink instanceLink = new Hyperlink(item);
                 dxfFamilyTextFlow.getChildren().add(instanceLink);
@@ -236,19 +242,19 @@ public class MainViewController {
     public void truckSearch() {
         
         String truckFileName = truckSearchField.getText();
-        String truckNumber = truckFileName.substring(0, 6);
+        Truck truck = truckService.getTruck(truckFileName);
         
-        if (truckDatabase.getLink(truckFileName) == null) {
+        if (truck.getFileLocation() == null) {
             truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
         } else {
-            Hyperlink truckLinkWithContext = truckLinkNode(truckFileName);
+            Hyperlink truckLinkWithContext = truckLinkNode(truck);
             
             if (truckRadioButton.isSelected()) {
-                hostServices.showDocument(truckDatabase.getLink(truckFileName));
+                hostServices.showDocument(truck.getFileLocation());
             } else if (workOrderRadioButton.isSelected()) {
-                hostServices.showDocument(getFullWorkOrderFilePath(truckNumber));
+                hostServices.showDocument(truck.getWorkOrderLocation());
             } else {
-                hostServices.showDocument(getFullTransmittalFilePath(truckNumber));
+                hostServices.showDocument(truck.getTransmittalLocation());
             }
             truckHistoryTextFlow.getChildren().add(truckLinkWithContext);
             truckHistoryTextFlow.getChildren().add(new Text("\n"));
@@ -259,29 +265,34 @@ public class MainViewController {
     }
     
     public void archiveTruckSearch() {
-        String truck = archiveTruckSearchField.getText();
-        if (archiveTruckDatabase.getLink(truck) == null) {
-            archiveTruckSearchErrorLabel.setText("Error: " + truck + " not found!");
+        String truckFileName = archiveTruckSearchField.getText();
+        Truck archiveTruck = archiveTruckService.getTruck(truckFileName);
+        
+        if (archiveTruck.getFileLocation() == null) {
+            archiveTruckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
         } else {
-            String archiveTruckFilePath = archiveTruckDatabase.getLink(truck);
-            Hyperlink link = hyperLinkNode(truck, archiveTruckFilePath);
-            truckHistoryTextFlow.getChildren().add(link);
+            Hyperlink truckLinkWithContext = truckLinkNode(archiveTruck);
+            
+            if (archiveTruckRadioButton.isSelected()) {
+                hostServices.showDocument(archiveTruck.getFileLocation());
+            } else if (archiveWorkOrderRadioButton.isSelected()) {
+                hostServices.showDocument(archiveTruck.getWorkOrderLocation());
+            } else {
+                hostServices.showDocument(archiveTruck.getTransmittalLocation());
+            }
+            
+            truckHistoryTextFlow.getChildren().add(truckLinkWithContext);
             truckHistoryTextFlow.getChildren().add(new Text("\n"));
             archiveTruckSearchField.setText("");
             archiveTruckSearchErrorLabel.setText("");
         }
     }
     
-    private Hyperlink truckLinkNode(String truckFilename) {
-        String truckNumber = truckFilename.substring(0, 6);
-        Hyperlink mainLink = hyperLinkNode(truckFilename, truckDatabase.getLink(truckFilename));
+    private Hyperlink truckLinkNode(Truck truck) {
+        Hyperlink mainLink = hyperLinkNode(truck.getTruckFileName(), truck.getFileLocation());
         ContextMenu contextMenu = new ContextMenu();
-        String transmittalFilePath = getFullTransmittalFilePath(truckNumber);
-        String workOrderFilePath = getFullWorkOrderFilePath(truckNumber);
-        
-        
-        contextMenu.getItems().add(menuItemLink("Transmittal", transmittalFilePath));
-        contextMenu.getItems().add(menuItemLink("Work Order", workOrderFilePath));
+        contextMenu.getItems().add(menuItemLink("Transmittal", truck.getTransmittalLocation()));
+        contextMenu.getItems().add(menuItemLink("Work Order", truck.getWorkOrderLocation()));
         
         mainLink.setContextMenu(contextMenu);
         return mainLink;
@@ -311,30 +322,6 @@ public class MainViewController {
         return hyperlink;
 }
     
-    private String getFullTransmittalFilePath(String truckNumber) {
-        Optional<String> filePath =
-                transmittalDatabase.autoCompleteList().stream()
-                        .filter(fileName -> fileName.startsWith(truckNumber))
-                        .findAny();
-        if (filePath.isEmpty()) {
-            return null;
-        } else {
-            return filePath.toString();
-        }
-    }
-    
-    private String getFullWorkOrderFilePath(String truckNumber) {
-        Optional<String> filePath =
-                workOrderDatabase.autoCompleteList().stream()
-                        .filter(fileName -> fileName.startsWith(truckNumber))
-                        .findAny();
-        if (filePath.isEmpty()) {
-            return null;
-        } else {
-            return filePath.toString();
-        }
-    }
-    
     private EventHandler<MouseEvent> hyperLinkHandler(String link) {
         return event -> {
             Hyperlink hostLink = (Hyperlink) event.getSource();
@@ -356,13 +343,4 @@ public class MainViewController {
         this.hostServices = hostServices;
     }
     
-    public HashMap<String, String> fileLocationsHashmap() throws IOException {
-        HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
-        assert inputStream != null;
-        String myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-        locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>() {
-        }.getType());
-        return locations;
-    }
 }
