@@ -1,4 +1,4 @@
-package modules;
+package service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class DrawingFinder {
+public class Drawing {
     private String drawing;
     private HashMap<String, String> drawingLocation;
     
@@ -18,7 +18,7 @@ public class DrawingFinder {
      * This takes a drawing string of any length then makes sure it ends with drawingString + "d";
      * drawingLocation pulls the list from resources using getPrefixes() method.
      */
-    public DrawingFinder(String string){
+    public Drawing(String string){
         if (string.endsWith("D") || (string.endsWith("d")))
             drawing = string.toLowerCase();
         else

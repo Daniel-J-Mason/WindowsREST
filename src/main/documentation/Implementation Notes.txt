@@ -192,7 +192,7 @@ File Structure prior to compiling is
 |   |--application
 |   	|--Main
 |   	|--SearchBar
-|   |--controllers
+|   |--controller
 |   	|--ContainmentPage
 |   	|--MainViewController
 |   |--modules
