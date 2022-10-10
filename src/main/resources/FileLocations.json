@@ -4,6 +4,6 @@
   "TruckLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Working\\Working Folder - Unshipped Units",
   "TruckArchiveLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Archive",
   "TransmittalLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Operations\\2004 Master Files\\8 - Transmittals - By Type",
-  "TransmittalArchiveLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Archive\\OLD Transmittals By Year",
+  "TransmittalArchiveLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_ENG_Archive\\WCFLARCH\\OLD Transmittals By Year",
   "WorkOrderLocations": "\\\\WPFFILE1.REVGINC.NET\\AMB-WPF_Production_Control\\Work Orders"
 }
