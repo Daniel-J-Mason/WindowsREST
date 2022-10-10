@@ -4,86 +4,39 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="2.0 Stable release&#10;Last update was radio buttons">
-      <change afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ContainmentPageController.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/Main.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/MainViewController.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/PartsByTruck.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ServerMappingFrontloader.txt" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="2.1 Cleaned up formatting, cleaned up documentation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/BaseDxf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Drawing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Truck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/FileDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/WindowsREST.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/documentation/Implementation Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Implementation Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/allclasses-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/allpackages-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/application/Main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/application/SearchBar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/application/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/application/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/element-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-7.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index-files/index-9.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/jquery-ui.overrides.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/member-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/module-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/ArchiveTruckMapDownloader.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/DrawingFinder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/DxfFinder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/FileSortComparator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/TruckMapDownloader.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/modules/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/overview-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/package-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/resources/glass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/resources/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_glass_55_fbf9ee_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_glass_65_dadada_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_glass_75_dadada_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_glass_75_e6e6e6_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_glass_95_fef1ec_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-bg_highlight-soft_75_cccccc_1x100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-icons_222222_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-icons_2e83ff_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-icons_454545_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-icons_888888_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/images/ui-icons_cd0a0a_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/jquery-3.5.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script-dir/jquery-ui.structure.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/tag-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/JavaDocs/type-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Logic Web.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ArchiveTruckMapDownloader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/DrawingFinder.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/DrawingFinder.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/DxfFinder.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/DxfFinder.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/FileSortComparator.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/FileSortComparator.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ContainmentPageController.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/ContainmentPageController.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/MainViewController.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/MainViewController.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/SearchBar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/SearchBar.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Plaintext Code/TruckMapDownloader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/REST.mmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Resources/FileLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Resources/REV_LOGO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Resources/archiveTruckLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Resources/drawingPrefix.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/documentation/Resources/truckLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modules/serverMappingFrontloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modules/ServerMappingFrontloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainViewController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DrawingFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Drawing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/DxfFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/Dxf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/FileSortComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/FileSortComparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/PartsByTruck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/PartsByTruck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modules/ServerMappingFrontloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations_backup.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/REST.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REST.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/REV_LOGO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +69,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="vsbbherh" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -131,18 +87,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/Controllers/ContainmentPage.java" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.3678344" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/main/java/modules/TruckMapDownloader.java" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kal/IdeaProjects/GitProjects/WindowsREST&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -150,6 +101,7 @@
       <recent name="C:\Users\Danny\Documents\GitHub\WindowsREST\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/.." />
@@ -161,7 +113,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="modules.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -174,7 +126,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="modules.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -187,7 +139,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="modules.*" />
+          <option name="PATTERN" value="service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -213,7 +165,7 @@
       <module name="WindowsREST" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Controllers.*" />
+          <option name="PATTERN" value="controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -392,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640209289516</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="2.1 Cleaned up formatting, cleaned up documentation">
+      <created>1642422658123</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642422658123</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,6 +376,7 @@
     <MESSAGE value="Branch Converted to fxmlLoader format. Cleaned up, in pre-release searching for bugs. Mostly stable.&#10;Added features:&#10;Search units by part,&#10;Open transmittal,&#10;Open work order,&#10;2004 Master files,&#10;Side scroll bug fixed,&#10;Refresh button fixed" />
     <MESSAGE value="Some clean up, pre-released to the office.&#10;Future plans are debugging and integrating Java translated model comparison" />
     <MESSAGE value="2.0 Stable release&#10;Last update was radio buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.0 Stable release&#10;Last update was radio buttons" />
+    <MESSAGE value="2.1 Cleaned up formatting, cleaned up documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.1 Cleaned up formatting, cleaned up documentation" />
   </component>
 </project>

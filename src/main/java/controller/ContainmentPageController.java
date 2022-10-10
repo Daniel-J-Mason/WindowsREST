@@ -1,4 +1,4 @@
-package Controllers;
+package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -9,8 +9,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import modules.PartsByTruck;
-import modules.ServerMappingFrontloader;
+import service.FileDatabase;
+import service.PartsByTruck;
 import org.apache.commons.io.IOUtils;
 import java.io.File;
 import java.io.IOException;
@@ -41,9 +41,9 @@ public class ContainmentPageController {
             "\\4. Personal Working Folder\\Daniel Mason\\Scripts\\Critical Location Folder\\QueryableData";
     
     private final HashMap<CheckBox, String> checkBoxFiles = new HashMap<>();
-    private final ServerMappingFrontloader downloader = new ServerMappingFrontloader();
-    private final ServerMappingFrontloader transmittalDownloader = new ServerMappingFrontloader();
-    private final ServerMappingFrontloader workOrderDownloader = new ServerMappingFrontloader();
+    private final FileDatabase downloader = new FileDatabase();
+    private final FileDatabase transmittalDownloader = new FileDatabase();
+    private final FileDatabase workOrderDownloader = new FileDatabase();
     
     HostServices hostServices;
     
