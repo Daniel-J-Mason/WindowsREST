@@ -114,7 +114,7 @@ public class DxfService {
     
     private String loadServerPathToDxfs() {
         HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        InputStream inputStream = getClass().getResourceAsStream("/locations/FileLocations.json");
         String myJson = null;
         try {
             myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
@@ -132,7 +132,7 @@ public class DxfService {
         
         InputStream inputStream = null;
         try {
-            inputStream = getClass().getResourceAsStream("/drawingPrefix.txt");
+            inputStream = getClass().getResourceAsStream("/locations/drawingPrefix.txt");
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(":");
