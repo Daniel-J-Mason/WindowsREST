@@ -215,7 +215,7 @@ public class MainViewController {
     public void drawingSearch() {
         String drawingNumber = drawingSearchField.getText();
         Drawing drawing = drawingService.getDrawing(drawingNumber);
-        if (drawing.getFileLocation() == null) {
+        if (drawing == null) {
             drawingSearchErrorLabel.setText("Error: " + drawingNumber + " not found!");
         } else {
             hostServices.showDocument(drawing.getFileLocation());
