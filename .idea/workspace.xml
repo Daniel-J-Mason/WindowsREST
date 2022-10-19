@@ -4,41 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO_DARK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/dark-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/default-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler&#10;&#10;REST 3.0.0 Release">
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DxfService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DxfService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/TruckService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/TruckService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/WorkOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/WorkOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/FileLocations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveTransmittalLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveTransmittalLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveTruckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveTruckLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveWorkOrderLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveWorkOrderLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/drawingPrefix.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/drawingPrefix.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/transmittalLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/transmittalLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/truckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/truckLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/workOrderLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/workOrderLocations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FileLocations.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/archiveTruckLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/drawingPrefix.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/transmittalLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/truckLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/workOrderLocations.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665425323400</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler&#10;&#10;REST 3.0.0 Release">
+      <created>1666186175608</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1666186175608</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,6 +404,8 @@
     <MESSAGE value="3.0.0-PRERELEASE, service module refactor" />
     <MESSAGE value="3.0.0-PRERELEASE, archive refactor pre" />
     <MESSAGE value="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction" />
+    <MESSAGE value="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler" />
+    <MESSAGE value="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler&#10;&#10;REST 3.0.0 Release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler&#10;&#10;REST 3.0.0 Release" />
   </component>
 </project>
