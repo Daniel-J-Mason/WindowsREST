@@ -30,6 +30,7 @@ public class SearchBar extends Application{
         MainViewController controller = loader.getController();
         controller.setGetHostController(getHostServices());
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/default-theme.css");
         window.setScene(scene);
         window.getIcons().add(new Image(Objects.requireNonNull(SearchBar.class.getResourceAsStream("/images/REST-ICO-128.png"))));
         window.show();

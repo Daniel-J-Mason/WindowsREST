@@ -1,6 +1,5 @@
 package controller;
 
-
 import entity.Drawing;
 import entity.Dxf;
 import entity.Truck;
@@ -10,6 +9,7 @@ import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,7 +25,6 @@ import service.DrawingService;
 import service.DxfService;
 import service.TruckService;
 import service.WorkOrderService;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -41,7 +40,6 @@ public class MainViewController {
     public RadioButton truckRadioButton;
     public RadioButton workOrderRadioButton;
     public RadioButton transmittalRadioButton;
-    public Label truckSearchErrorLabel;
     public ImageView imageView;
     public ScrollPane dxfFamilyPane;
     public TextFlow dxfFamilyTextFlow;
@@ -64,13 +62,14 @@ public class MainViewController {
     private final WorkOrderService workOrderService = new WorkOrderService();
     
     private final TruckService truckService =
-            new TruckService("TruckLocations", "/truckLocations.txt",
-                    "TransmittalLocations", "/transmittalLocations.txt",
-                    "WorkOrderLocations", "/workOrderLocations.txt");
+            new TruckService("TruckLocations", "/locations/truckLocations.txt",
+                    "TransmittalLocations", "/locations/transmittalLocations.txt",
+                    "WorkOrderLocations", "/locations/workOrderLocations.txt");
     private final TruckService archiveTruckService =
-            new TruckService("TruckArchiveLocations", "/archiveTruckLocations.txt",
-                    "TransmittalArchiveLocations", "/archiveTransmittalLocations.txt",
-                    "WorkOrderLocations", "/archiveWorkOrderLocations.txt");
+            new TruckService("TruckArchiveLocations", "/locations/archiveTruckLocations.txt",
+                    "TransmittalArchiveLocations", "/locations/archiveTransmittalLocations.txt",
+                    "WorkOrderLocations", "/locations/archiveWorkOrderLocations.txt");
+    public RadioMenuItem darkModeButton;
     
     private ArrayList<String> truckAutocompleteArray;
     private ArrayList<String> archiveAutocompleteArray;
@@ -83,8 +82,6 @@ public class MainViewController {
     
     
     public void initialize() {
-        
-        
         truckAutocompleteArray = truckService.getAutoCompleteList();
         archiveAutocompleteArray = archiveTruckService.getAutoCompleteList();
         workOrderAutocompleteArray = workOrderService.getWorkOrderList();
@@ -101,9 +98,6 @@ public class MainViewController {
         workOrderRadioButton.setToggleGroup(searchToggleGroup);
         transmittalRadioButton.setToggleGroup(searchToggleGroup);
         truckRadioButton.setSelected(true);
-        
-        
-        
     }
     
     public void drawingFieldKeyPress(KeyEvent keyEvent) {
@@ -132,6 +126,10 @@ public class MainViewController {
         containmentStage.setScene(scene);
         containmentStage.getIcons().add(new Image(Objects.requireNonNull(ContainmentPageController.class.getResourceAsStream("/images/REST-ICO.png"))));
         containmentStage.setTitle("REST Units by Parts");
+        if (darkModeButton.isSelected()) {
+            scene.getStylesheets().add("/styles/dark-theme.css");
+        }
+        containmentStage.setResizable(false);
         containmentStage.show();
     }
     
@@ -181,7 +179,6 @@ public class MainViewController {
     public void refreshClicked() {
         truckService.refreshAllDatabases();
         workOrderService.refresh();
-        truckAutocompleteArray.clear();
         
         if (archiveCheckBox.isSelected()){
             truckSuggestionProvider.clearSuggestions();
@@ -201,7 +198,6 @@ public class MainViewController {
         dxfSearchField.setText("");
         dxfSearchErrorLabel.setText("");
         truckSearchField.setText("");
-        truckSearchErrorLabel.setText("");
         dxfFamilyTextFlow.getChildren().clear();
         drawingHistoryTextFlow.getChildren().clear();
         dxfHistoryTextFlow.getChildren().clear();
@@ -239,16 +235,13 @@ public class MainViewController {
             dxfSearchErrorLabel.setText("Error: " + partNumber + " not found!"); //!!!
         } else {
             TreeMap<String, String> familyTable = dxf.getFamilyTree();
-            for (String item : familyTable.keySet()) {
-                Hyperlink instanceLink = new Hyperlink(item);
+            for (String fileName : familyTable.keySet()) {
+                Hyperlink instanceLink = new Hyperlink(fileName);
+                String link = familyTable.get(fileName);
+                EventHandler<MouseEvent> eventHandler = dxfHistoryEventHandler(fileName, link);
+                instanceLink.addEventHandler(MouseEvent.ANY, eventHandler);
+                instanceLink.setOnAction(action -> instanceLink.setVisited(false));
                 dxfFamilyTextFlow.getChildren().add(instanceLink);
-                instanceLink.setOnAction(actionEvent -> {
-                    hostServices.showDocument(familyTable.get(item));
-                    Hyperlink separateCopyOfInstanceLink = hyperLinkWithOpenLocation(item, familyTable.get(item));
-                    dxfHistoryTextFlow.getChildren().add(separateCopyOfInstanceLink);
-                    dxfHistoryTextFlow.getChildren().add(new Text("\n"));
-                    instanceLink.setVisited(false);
-                });
                 dxfFamilyTextFlow.getChildren().add(new Text("\n"));
             }
             dxfSearchErrorLabel.setText("");
@@ -264,7 +257,7 @@ public class MainViewController {
         Truck truck = truckService.getTruck(truckFileName);
         
         if (truck.getFileLocation() == null) {
-            truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
+            //truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
         } else {
             Hyperlink truckLinkWithContext = truckLinkNode(truck);
             
@@ -278,7 +271,7 @@ public class MainViewController {
             truckHistoryTextFlow.getChildren().add(truckLinkWithContext);
             truckHistoryTextFlow.getChildren().add(new Text("\n"));
             truckSearchField.setText("");
-            truckSearchErrorLabel.setText("");
+            //truckSearchErrorLabel.setText("");
         }
         
     }
@@ -288,7 +281,7 @@ public class MainViewController {
         Truck archiveTruck = archiveTruckService.getTruck(truckFileName);
         
         if (archiveTruck.getFileLocation() == null) {
-            truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
+            //truckSearchErrorLabel.setText("Error: " + truckFileName + " not found!");
         } else {
             Hyperlink truckLinkWithContext = truckLinkNode(archiveTruck);
             
@@ -303,13 +296,14 @@ public class MainViewController {
             truckHistoryTextFlow.getChildren().add(truckLinkWithContext);
             truckHistoryTextFlow.getChildren().add(new Text("\n"));
             truckSearchField.setText("");
-            truckSearchErrorLabel.setText("");
+            //truckSearchErrorLabel.setText("");
         }
     }
     
     private void workOrderSearch() {
         String fullWorkOrderName = workOrderSearchField.getText();
         hostServices.showDocument(workOrderService.getLink(fullWorkOrderName));
+        workOrderSearchField.clear();
     }
     
     private Hyperlink truckLinkNode(Truck truck) {
@@ -345,6 +339,7 @@ public class MainViewController {
         Hyperlink hyperlink = new Hyperlink(name);
         EventHandler<MouseEvent> mouseHandler = hyperLinkHandler(link);
         hyperlink.addEventHandler(MouseEvent.ANY, mouseHandler);
+        hyperlink.setOnAction(action -> hyperlink.setVisited(false));
         return hyperlink;
     }
     
@@ -353,11 +348,9 @@ public class MainViewController {
             Hyperlink hostLink = (Hyperlink) event.getSource();
             if (event.isPrimaryButtonDown()) {
                 hostServices.showDocument(link);
-                hostLink.setVisited(false);
             } else if (event.isSecondaryButtonDown()) {
                 try {
                     Runtime.getRuntime().exec("explorer.exe /select, " + link);
-                    hostLink.setVisited(false);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -365,11 +358,51 @@ public class MainViewController {
         };
     }
     
+    // hyperLinkHandler with additional step to add to history
+    private EventHandler<MouseEvent> dxfHistoryEventHandler(String fileName, String link){
+        return event -> {
+            Hyperlink hostLink = (Hyperlink) event.getSource();
+            if (event.isPrimaryButtonDown()) {
+                hostServices.showDocument(link);
+                hostLink.setVisited(false);
+                Hyperlink historyLink = hyperLinkWithOpenLocation(fileName, link);
+                dxfHistoryTextFlow.getChildren().add(historyLink);
+                dxfHistoryTextFlow.getChildren().add(new Text("\n"));
+            } else if (event.isSecondaryButtonDown()) {
+                try {
+                    Runtime.getRuntime().exec("explorer.exe /select, " + link);
+                    hostLink.setVisited(false);
+                    Hyperlink historyLink = hyperLinkWithOpenLocation(fileName, link);
+                    dxfHistoryTextFlow.getChildren().add(historyLink);
+                    dxfHistoryTextFlow.getChildren().add(new Text("\n"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        };
+    }
+    
     public void setGetHostController(HostServices hostServices) {
         this.hostServices = hostServices;
     }
     
-    public void toggleAutoComplete(ActionEvent actionEvent) {
+    public void darkModeToggle() {
+        Node root = truckRadioButton.getScene().getRoot();
+        if (darkModeButton.isSelected()){
+            root.getScene().getStylesheets().clear();
+            root.getScene().getStylesheets().add("/styles/dark-theme.css");
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/REV_LOGO_DARK.png")));
+            imageView.setImage(image);
+        } else {
+            root.getScene().getStylesheets().clear();
+            root.getScene().getStylesheets().add("/styles/default-theme.css");
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/REV_LOGO.png")));
+            imageView.setImage(image);
+        }
+    }
+    
+    public void toggleAutoComplete() {
         if (archiveCheckBox.isSelected()) {
             truckSuggestionProvider.clearSuggestions();
             truckSuggestionProvider.addPossibleSuggestions(archiveAutocompleteArray);
