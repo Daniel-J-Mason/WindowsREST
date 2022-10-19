@@ -21,12 +21,12 @@ public class DrawingService {
     public Drawing getDrawing(String partNumber) {
         String formattedPartNumber = formatPartNumber(partNumber);
         Drawing drawing = new Drawing();
-        drawing.setPartNumber(formattedPartNumber + ".pdf");
         
         int count = 0;
         for (String drawingFile: fileContents(formattedPartNumber)){
             if (drawingFile.toLowerCase().startsWith(formattedPartNumber)){
                 count++;
+                drawing.setPartNumber(drawingFile);
                 drawing.setFileLocation(getLink(drawingFile));
             }
         }
@@ -69,7 +69,7 @@ public class DrawingService {
     
     private String getServerPathToDrawings() {
         HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        InputStream inputStream = getClass().getResourceAsStream("/locations/FileLocations.json");
         String myJson = null;
         try {
             myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
@@ -86,7 +86,7 @@ public class DrawingService {
         
         InputStream inputStream = null;
         try{
-            inputStream = getClass().getResourceAsStream("/drawingPrefix.txt");
+            inputStream = getClass().getResourceAsStream("/locations/drawingPrefix.txt");
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()){
                 String[] parts = scanner.nextLine().split(":");

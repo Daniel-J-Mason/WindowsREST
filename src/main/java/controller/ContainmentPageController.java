@@ -51,9 +51,9 @@ public class ContainmentPageController {
     
     public void initialize() throws IOException {
         HashMap<String, String> locations = fileLocationsHashmap();
-        downloader.setLocation(locations.get("TruckLocations"), "/truckLocations.txt");
-        transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/transmittalLocations.txt");
-        workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
+        downloader.setLocation(locations.get("TruckLocations"), "/locations/truckLocations.txt");
+        transmittalDownloader.setLocation(locations.get("TransmittalLocations"), "/locations/transmittalLocations.txt");
+        workOrderDownloader.setLocation(locations.get("WorkOrderLocations"), "/locations/workOrderLocations.txt");
         
         //Marry checkboxes to strings
         checkBoxFiles.put(wheeledCoachBox, "WHEELED_COACH");
@@ -238,7 +238,7 @@ public class ContainmentPageController {
     
     public HashMap<String, String> fileLocationsHashmap() throws IOException {
         HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        InputStream inputStream = getClass().getResourceAsStream("/locations/FileLocations.json");
         String myJson = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         locations = new Gson().fromJson(myJson, new TypeToken<HashMap<String, String>>(){}.getType());
         return locations;

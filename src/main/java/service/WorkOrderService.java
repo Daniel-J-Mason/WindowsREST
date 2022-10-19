@@ -17,7 +17,7 @@ public class WorkOrderService {
     
     public WorkOrderService(){
         locations = fileLocationsHashmap();
-        workOrderDatabase.setLocation(locations.get("WorkOrderLocations"), "/workOrderLocations.txt");
+        workOrderDatabase.setLocation(locations.get("WorkOrderLocations"), "/locations/workOrderLocations.txt");
     }
     
     public String getLink(String workOrderFullName){
@@ -34,7 +34,7 @@ public class WorkOrderService {
     
     private HashMap<String, String> fileLocationsHashmap() {
         HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        InputStream inputStream = getClass().getResourceAsStream("/locations/FileLocations.json");
         assert inputStream != null;
         String myJson = null;
         try {

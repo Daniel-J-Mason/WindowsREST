@@ -1,0 +1,214 @@
+.*
+{
+}
+
+.root
+{
+    -fx-background-color: #1E1F2B;
+    -fx-text-fill: #3F414B;
+}
+.button
+{
+    -fx-background-color: #3F414B;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.button:hover
+{
+    -fx-background-color: #303342;
+    -fx-text-fill: white;
+}
+
+.button:focused
+{
+    -fx-background-color: #3F414B;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+Hyperlink
+{
+    -fx-text-fill: #9CD1BB;
+}
+
+Hyperlink:focused
+{
+    -fx-border-color: #9CD1BB;
+}
+
+GridPane
+{
+    -fx-border-color: #3F414B;
+}
+
+GridPane VBox
+{
+    -fx-border-color: #3F414B;
+}
+
+.label
+{
+    -fx-text-fill: white;
+}
+
+.text-field
+{
+    -fx-text-fill: white;
+    -fx-background-color: #303342;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.text-field:focused
+{
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.menu-bar
+{
+    -fx-background-color: #303342;
+}
+
+.radio-menu-item
+{
+    -fx-background-color: #303342;
+}
+
+.menu-item
+{
+    -fx-background-color: #303342;
+}
+
+.menu-item:hover
+{
+    -fx-background-color: #3F414B;
+}
+
+.context-menu
+{
+    -fx-background-color: #303342;
+}
+
+.radio-button
+{
+    -fx-text-fill: white;
+}
+
+.scroll-pane
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane .scroll-bar:vertical
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane .scroll-bar:vertical .track
+{
+    -fx-background-color: #1E1F2B;
+}
+
+.scroll-pane #dxfFamilyTextFlow
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane #drawingHistoryTextFlow
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane #dxfHistoryTextFlow
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane #truckHistoryTextFlow
+{
+    -fx-background-color: #303342;
+}
+
+.scroll-pane #displayField
+{
+    -fx-background-color: #303342;
+}
+
+.check-box
+{
+    -fx-text-fill: white;
+}
+
+.check-box:determinate .box
+{
+    -fx-background-color: #3F414B;
+}
+
+.check-box:selected .box .mark
+{
+    -fx-background-color: white;
+}
+
+.radio-button .radio
+{
+    -fx-background-color: #3F414B;
+}
+
+.radio-button:selected .radio .dot
+{
+    -fx-background-color: white;
+}
+
+.auto-complete-popup {
+    -fx-background-color: #303342;
+}
+
+.auto-complete-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-background: #1E1F2B;
+    -fx-background-color: #1E1F2B;
+    -fx-text-fill: white;
+}
+
+.auto-complete-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected {
+    -fx-background: #303342;
+    -fx-background-color: #303342;
+    -fx-text-fill: white;
+}
+
+.auto-complete-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:focused {
+    -fx-background: #303342;
+    -fx-background-color: #303342;
+    -fx-text-fill: white;
+}
+
+.auto-complete-popup > .list-view > .virtual-flow > .corner {
+    -fx-background: #1E1F2B;
+    -fx-background-color: #1E1F2B;
+}
+
+.auto-complete-popup > .list-view .scroll-bar:vertical {
+    -fx-background-color: #303342;
+}
+
+.auto-complete-popup > .list-view .scroll-bar:vertical .thumb{
+    -fx-background-color: #1E1F2B;
+}
+
+.auto-complete-popup > .list-view .scroll-bar:horizontal {
+    -fx-background-color: #303342;
+}
+
+.auto-complete-popup > .list-view .scroll-bar:horizontal .thumb{
+    -fx-background-color: #1E1F2B;
+}

@@ -74,7 +74,7 @@ public class TruckService {
     }
     private HashMap<String, String> fileLocationsHashmap() {
         HashMap<String, String> locations;
-        InputStream inputStream = getClass().getResourceAsStream("/FileLocations.json");
+        InputStream inputStream = getClass().getResourceAsStream("/locations/FileLocations.json");
         assert inputStream != null;
         String myJson = null;
         try {

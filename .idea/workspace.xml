@@ -4,23 +4,41 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE, archive refactor pre">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_maven_model_3_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_plexus_plexus_utils_3_0_22.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WindowsREST.iml" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO_DARK.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/dark-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/default-theme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/SearchBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContainmentPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ArchiveTruckService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FileLocations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Dxf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DrawingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/DxfService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DxfService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/TruckService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/TruckService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/WorkOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/WorkOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/FileLocations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveTransmittalLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveTransmittalLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveTruckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveTruckLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archiveWorkOrderLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/archiveWorkOrderLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/drawingPrefix.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/drawingPrefix.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/FileLocations.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FileLocations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/REV_LOGO.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/transmittalLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/transmittalLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/truckLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/truckLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/workOrderLocations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locations/workOrderLocations.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FileLocations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/archiveTruckLocations.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/drawingPrefix.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/transmittalLocations.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/truckLocations.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/workOrderLocations.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,21 +89,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "/home/kal/IdeaProjects/GitProjects/WindowsREST",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kal/IdeaProjects/GitProjects/WindowsREST/src/main/resources/images&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.folding&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="C:\Users\Danny\Documents\GitHub\WindowsREST\src\main\resources" />
       <recent name="C:\Users\Danny\Documents\GitHub\WindowsREST\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/locations" />
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
@@ -371,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665420184471</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction">
+      <created>1665425323400</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1665425323400</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -401,6 +429,7 @@
     <MESSAGE value="3.0.0-PRERELEASE, refactor for cleaner code," />
     <MESSAGE value="3.0.0-PRERELEASE, service module refactor" />
     <MESSAGE value="3.0.0-PRERELEASE, archive refactor pre" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE, archive refactor pre" />
+    <MESSAGE value="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0.0-PRERELEASE,&#10;Refactor Archive to be a toggle&#10;Add version Label&#10;add right click option for pdf and dxf hyperlinks to Open file location&#10;Add work order search bar to replace archive search&#10;Add Service modules and entities to remove confusion on usage&#10;Refactor mainview code to separate out blocks to better levels of abstraction" />
   </component>
 </project>

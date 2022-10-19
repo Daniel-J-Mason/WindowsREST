@@ -1,5 +1,7 @@
 package entity;
 
+import module.FileSortComparator;
+
 import java.util.Objects;
 import java.util.TreeMap;
 
@@ -43,7 +45,8 @@ public class Dxf {
     }
     
     public void setFamilyTree(TreeMap<String, String> familyTree) {
-        this.familyTree = new TreeMap<>();
+        FileSortComparator fileSortComparator = new FileSortComparator();
+        this.familyTree = new TreeMap<>(fileSortComparator);
         this.familyTree.putAll(familyTree);
     }
     
