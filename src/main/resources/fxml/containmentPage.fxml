@@ -69,7 +69,7 @@
             <Label maxWidth="1.7976931348623157E308" text="By Daniel Mason                       daniel.mason@revgroup.com" />
             <HBox alignment="BASELINE_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER_RIGHT" text="version: 3.0.1" HBox.hgrow="ALWAYS">
+                  <Label alignment="CENTER_RIGHT" text="version: 3.0.2" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
