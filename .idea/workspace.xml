@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.2 - patch typo in truck resources for 650000 - 699999">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-    </list>
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.3 - misc cleanup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -383,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671538924255</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="3.0.3 - misc cleanup">
+      <created>1675436652399</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1675436652399</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,6 +419,7 @@
     <MESSAGE value="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler" />
     <MESSAGE value="Add Dark Mode&#10;Convert Grid 2,0 to Collapse archive search and add Work Order search&#10;Add dxf event handler&#10;&#10;REST 3.0.0 Release" />
     <MESSAGE value="3.0.2 - patch typo in truck resources for 650000 - 699999" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.2 - patch typo in truck resources for 650000 - 699999" />
+    <MESSAGE value="3.0.3 - misc cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0.3 - misc cleanup" />
   </component>
 </project>
