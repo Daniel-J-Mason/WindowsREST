@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.3 - gitignore fixed">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/containmentPage.fxml" afterDir="false" />
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.2 - updated notes, reverted version level to apply to just file updates">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675436914846</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="3.0.2 - updated notes, reverted version level to apply to just file updates">
+      <created>1675437238566</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1675437238566</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,6 +438,7 @@
     <MESSAGE value="3.0.2 - patch typo in truck resources for 650000 - 699999" />
     <MESSAGE value="3.0.3 - misc cleanup" />
     <MESSAGE value="3.0.3 - gitignore fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.0.3 - gitignore fixed" />
+    <MESSAGE value="3.0.2 - updated notes, reverted version level to apply to just file updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="3.0.2 - updated notes, reverted version level to apply to just file updates" />
   </component>
 </project>
