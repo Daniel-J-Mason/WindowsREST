@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.2 - updated notes, reverted version level to apply to just file updates">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/containmentPage.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="5b7d61c5-9802-4070-b247-16338ce41b1a" name="Default Changelist" comment="3.0.2 - updated notes, reverted version level to apply to just file updates" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
